@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Tablet – Anschreiben</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 20px;border-radius:12px;font-weight:600;text-decoration:none;font-size:18px;box-sizing:border-box;border:1px solid transparent;font-family:inherit;cursor:pointer}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+.btn.sec{background:#fff;color:#1C2A22;border-color:#C2CCBC}
+.btn.done{background:#DCEFDF;color:#1E5A2E;cursor:default}
+.ps{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:64px;padding:10px 16px;border-radius:12px;border:1px solid #DCE3D7;background:#fff;font-family:inherit;font-size:18px;color:#1C2A22;cursor:pointer;text-align:left;box-sizing:border-box}
+.ps.on{border:2px solid #2F6B3F;background:#F5FAF5}
+.ps b{font-variant-numeric:tabular-nums}
+input[type=text]{font-family:inherit;font-size:18px;color:#1C2A22;border:1px solid #C2CCBC;border-radius:12px;padding:0 14px;background:#fff;box-sizing:border-box;width:100%;min-height:56px}
+table{border-collapse:collapse;width:100%}
+th{text-align:left;font-size:14px;font-weight:600;color:#4F5E55;text-transform:uppercase;letter-spacing:.04em;padding:8px 10px;border-bottom:1px solid #DCE3D7}
+td{padding:12px 10px;border-bottom:1px solid #EDF1EA;font-size:17px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.muted{color:#4F5E55}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; display: flex; flex-direction: column; background: #F2F5EF; font-family: 'Source Sans 3', sans-serif; font-size: 18px; color: #1C2A22; overflow: hidden">
+  <header style="height: 72px; flex: none; background: #fff; border-bottom: 1px solid #DCE3D7; padding: 0 20px; display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <a href="TabletVerkauf.dc.html" aria-label="Zurück zum Verkauf" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: #1C2A22"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <div><div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 21px">Anschreiben</div><div class="muted" style="font-size: 14px">Offene Beträge über alle Tage · sichtbar nur für Hausdienst und Kasse</div></div>
+    </div>
+    <span class="muted" style="font-size: 16px">Gesamt offen: <strong style="color: #1C2A22">{{allOpen}}</strong></span>
+  </header>
+
+  <div style="flex: 1; display: flex; gap: 20px; padding: 18px 20px; min-height: 0">
+    <aside style="width: 340px; flex: none; display: flex; flex-direction: column; gap: 10px">
+      <input type="text" placeholder="Name suchen" aria-label="Name suchen">
+      <template data-sc="for" list="{{people}}" as="p" hint-placeholder-count="3">
+        <template data-sc="if" value="{{p.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="ps on" aria-pressed="true"><span>{{p.name}}</span><b>{{p.open}}</b></button></template>
+        <template data-sc="if" value="{{p.off}}" hint-placeholder-val="{{ true }}"><button type="button" class="ps" onClick="{{p.pick}}" aria-pressed="false"><span>{{p.name}}</span><b>{{p.open}}</b></button></template>
+      </template>
+      <button type="button" class="btn sec" style="margin-top: 6px">+ Neue Person anlegen</button>
+      <p class="muted" style="margin: auto 0 0; font-size: 14px; line-height: 1.45">Gespeichert werden nur Name und Beträge. Ist alles bezahlt, verschwindet die Person aus der Liste.</p>
+    </aside>
+
+    <section style="flex: 1; min-width: 0; background: #fff; border: 1px solid #DCE3D7; border-radius: 16px; padding: 20px 24px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px">
+        <h2 style="font-size: 26px">{{cur.name}}</h2>
+        <span class="muted" style="font-size: 16px">{{cur.since}}</span>
+      </div>
+      <table>
+        <thead><tr><th>Datum</th><th>Was</th><th class="n">Betrag</th></tr></thead>
+        <tbody>
+          <template data-sc="for" list="{{cur.entries}}" as="e" hint-placeholder-count="3">
+            <tr><td style="white-space: nowrap">{{e.date}}</td><td>{{e.what}}</td><td class="n">{{e.amt}}</td></tr>
+          </template>
+        </tbody>
+      </table>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid #1C2A22; padding-top: 10px; margin-top: auto">
+        <span style="font-weight: 600">Offen</span>
+        <span style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 34px">{{curOpen}}</span>
+      </div>
+      <template data-sc="if" value="{{curPaid}}" hint-placeholder-val="{{ false }}">
+        <span class="btn done">Beglichen · {{paidAmt}} gehen in die heutige Kasse</span>
+      </template>
+      <template data-sc="if" value="{{curOpenFlag}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; gap: 10px">
+          <button type="button" class="btn pri" onClick="{{payAll}}" style="flex: 2">Alles bezahlt (bar)</button>
+          <a class="btn sec" href="TabletVerkauf.dc.html" style="flex: 1">Zurück zum Verkauf</a>
+        </div>
+      </template>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const eur = (c) => (c / 100).toFixed(2).replace('.', ',') + ' €';
+    const PEOPLE = [
+      { id: 'gerhard', name: 'Gerhard B.', since: 'seit 19.09.', entries: [
+        { date: 'Sa 19.09.', what: '2 Bier, 1 Rote Wurst', c: 990 },
+        { date: 'So 27.09.', what: '1 Kuchen', c: 250 }
+      ] },
+      { id: 'maier', name: 'Familie Maier', since: 'seit 26.09.', entries: [
+        { date: 'Sa 26.09.', what: '4 Kuchen, 2 Kaffee, 2 Limo', c: 1840 },
+        { date: 'Sa 26.09.', what: '2 Eis', c: 300 },
+        { date: 'Sa 03.10.', what: '1 Apfelschorle', c: 200 }
+      ] },
+      { id: 'kuchen', name: 'Wanderfreunde Kuchen', since: 'seit 12.09.', entries: [
+        { date: 'Sa 12.09.', what: 'Gruppe: 8 Radler, 3 Vesperteller', c: 4350 }
+      ] }
+    ];
+    const s = this.state || {};
+    const paid = s.paid ?? {};
+    const sel = s.sel ?? 'gerhard';
+    const openOf = (p) => (paid[p.id] ? 0 : p.entries.reduce((a, e) => a + e.c, 0));
+    const p = PEOPLE.find((x) => x.id === sel);
+    const sumP = p.entries.reduce((a, e) => a + e.c, 0);
+    return {
+      allOpen: eur(PEOPLE.reduce((a, x) => a + openOf(x), 0)),
+      people: PEOPLE.map((x) => ({ name: x.name, open: paid[x.id] ? 'beglichen' : eur(openOf(x)), on: x.id === sel, off: x.id !== sel, pick: () => this.setState({ sel: x.id }) })),
+      cur: { name: p.name, since: p.since, entries: p.entries.map((e) => ({ date: e.date, what: e.what, amt: eur(e.c) })) },
+      curOpen: eur(openOf(p)),
+      curPaid: !!paid[p.id], curOpenFlag: !paid[p.id],
+      paidAmt: eur(sumP),
+      payAll: () => this.setState({ paid: { ...paid, [p.id]: true } })
+    };
+  }
+}
+</script>
+</body>
+</html>

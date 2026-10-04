@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Tablet – Tagesabschluss</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 24px;border-radius:12px;font-weight:600;text-decoration:none;font-size:19px;box-sizing:border-box;border:1px solid transparent;font-family:inherit;cursor:pointer}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+.btn.off{background:#E1E6DE;color:#5A665F;cursor:not-allowed}
+.card{background:#fff;border:1px solid #DCE3D7;border-radius:16px;padding:16px 20px;box-sizing:border-box}
+.den{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #EDF1EA}
+.den .v{width:56px;font-weight:600;font-size:17px}
+.den button{width:42px;height:42px;border-radius:10px;border:1px solid #C2CCBC;background:#fff;font-size:22px;font-family:inherit;cursor:pointer;color:#1C2A22}
+.den output{width:36px;text-align:center;font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.den .s{margin-left:auto;font-variant-numeric:tabular-nums;color:#4F5E55;font-size:16px}
+.r{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;font-size:17px;font-variant-numeric:tabular-nums}
+.chk{display:flex;gap:12px;align-items:center;padding:10px 12px;border:1px solid #DCE3D7;border-radius:12px;cursor:pointer;font-size:17px}
+.chk input{width:26px;height:26px;margin:0;accent-color:#2F6B3F;flex:none}
+.muted{color:#4F5E55}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; display: flex; flex-direction: column; background: #F2F5EF; font-family: 'Source Sans 3', sans-serif; font-size: 18px; color: #1C2A22; overflow: hidden">
+  <header style="height: 72px; flex: none; background: #fff; border-bottom: 1px solid #DCE3D7; padding: 0 20px; display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <a href="TabletVerkauf.dc.html" aria-label="Zurück zum Verkauf" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: #1C2A22"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <div><div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 21px">Tagesabschluss · Sa 03.10.</div><div class="muted" style="font-size: 14px">Ladenkasse zählen und mit der Rechenhilfe vergleichen</div></div>
+    </div>
+    <span class="muted" style="font-size: 16px">Offene Bestellungen: <strong style="color: #1C2A22">0</strong></span>
+  </header>
+
+  <template data-sc="if" value="{{open}}" hint-placeholder-val="{{ true }}">
+    <div style="flex: 1; display: flex; gap: 18px; padding: 16px 20px; min-height: 0">
+      <section class="card" style="flex: 1.15; display: flex; flex-direction: column">
+        <h2 style="font-size: 21px; margin-bottom: 2px">Kasse zählen</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 22px">
+          <template data-sc="for" list="{{dens}}" as="d" hint-placeholder-count="10">
+            <div class="den"><span class="v">{{d.label}}</span><button type="button" onClick="{{d.minus}}" aria-label="{{d.ariaMinus}}">−</button><output>{{d.n}}</output><button type="button" onClick="{{d.plus}}" aria-label="{{d.ariaPlus}}">+</button><span class="s">{{d.sum}}</span></div>
+          </template>
+        </div>
+        <div class="r" style="margin-top: auto; border-top: 2px solid #1C2A22; padding-top: 10px"><strong>Gezählt</strong><span style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 30px">{{ist}}</span></div>
+      </section>
+
+      <section style="flex: 1; display: flex; flex-direction: column; gap: 12px; min-width: 0">
+        <div class="card">
+          <div class="r"><span class="muted">Anfangsbestand (gezählt)</span><span>145,50 €</span></div>
+          <div class="r"><span class="muted">+ Bezahlte Bestellungen (23)</span><span>312,40 €</span></div>
+          <div class="r"><span class="muted">+ Beglichenes Angeschriebenes</span><span>12,40 €</span></div>
+          <div class="r"><span class="muted">− Entnahmen</span><span>0,00 €</span></div>
+          <div class="r" style="border-top: 1px solid #DCE3D7; margin-top: 4px; padding-top: 8px"><strong>Soll laut Rechenhilfe</strong><strong>{{soll}}</strong></div>
+          <template data-sc="if" value="{{ok}}" hint-placeholder-val="{{ true }}"><div style="margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: #DCEFDF; color: #1E5A2E; font-weight: 600">Stimmt überein.</div></template>
+          <template data-sc="if" value="{{diff}}" hint-placeholder-val="{{ false }}"><div style="margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: #FFF1D6; color: #7A4E00; font-weight: 600">Differenz {{diffText}} – bitte nachzählen. Bleibt sie, wird sie mit dem Abschluss gemeldet.</div></template>
+          <div class="muted" style="font-size: 14px; margin-top: 8px">Nicht in der Kasse: heute angeschrieben 6,70 € · 1 Bestellung storniert</div>
+          <div class="muted" style="font-size: 14px; margin-top: 4px">Maßgeblich ist der gezählte Bestand der Ladenkasse. Die Rechenhilfe dient nur zur Kontrolle.</div>
+        </div>
+        <div class="card" style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+          <span><strong style="display: block">In die Kassenmappe</strong><span class="muted" style="font-size: 15px">150,00 € bleiben als Wechselgeld</span></span>
+          <span style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 26px">{{skim}}</span>
+        </div>
+        <div class="card" style="display: flex; flex-direction: column; gap: 8px">
+          <label class="chk"><input type="checkbox" checked="{{a}}" onChange="{{ta}}">Sabine W. bestätigt</label>
+          <label class="chk"><input type="checkbox" checked="{{b}}" onChange="{{tb}}">Peter L. bestätigt</label>
+        </div>
+        <template data-sc="if" value="{{both}}" hint-placeholder-val="{{ false }}"><button type="button" class="btn pri" onClick="{{save}}">Abschluss speichern</button></template>
+        <template data-sc="if" value="{{notBoth}}" hint-placeholder-val="{{ true }}"><span class="btn off" aria-disabled="true">Beide bestätigen, dann speichern</span></template>
+      </section>
+    </div>
+  </template>
+
+  <template data-sc="if" value="{{saved}}" hint-placeholder-val="{{ false }}">
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center">
+      <div style="width: 100px; height: 100px; border-radius: 50%; background: #DCEFDF; color: #1E5A2E; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" aria-hidden="true" style="width: 54px; height: 54px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+      <h1 style="font-size: 36px">Tagesabschluss gespeichert</h1>
+      <p class="muted" style="margin: 0; max-width: 560px; line-height: 1.5">Danke für euren Hausdienst! Die Tätigkeit Kasse sieht den Abschluss jetzt im Dashboard. Der nächste Hausdienst startet mit 150,00 € Wechselgeld.</p>
+      <a class="btn pri" href="TabletStart.dc.html" style="min-width: 260px">Fertig</a>
+    </div>
+  </template>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const D = [
+      { c: 5000, label: '50 €' }, { c: 200, label: '2 €' },
+      { c: 2000, label: '20 €' }, { c: 100, label: '1 €' },
+      { c: 1000, label: '10 €' }, { c: 50, label: '50 ct' },
+      { c: 500, label: '5 €' }, { c: 20, label: '20 ct' },
+      { c: 10, label: '10 ct' }, { c: 5, label: '5 ct' }
+    ];
+    const s = this.state || {};
+    const n = s.n ?? { 5000: 5, 2000: 5, 1000: 6, 500: 6, 200: 8, 100: 9, 50: 6, 20: 9, 10: 5, 5: 0 };
+    const eur = (c) => (c < 0 ? '−' : '') + (Math.abs(c) / 100).toFixed(2).replace('.', ',') + ' €';
+    const total = D.reduce((a, d) => a + d.c * (n[d.c] || 0), 0);
+    const soll = 14550 + 31240 + 1240;
+    const delta = total - soll;
+    const set = (c, v) => this.setState({ n: { ...n, [c]: Math.max(0, v) } });
+    const a = s.a ?? false, b = s.b ?? false, saved = s.saved ?? false;
+    return {
+      dens: D.map((d) => ({ label: d.label, n: n[d.c] || 0, sum: eur(d.c * (n[d.c] || 0)), minus: () => set(d.c, (n[d.c] || 0) - 1), plus: () => set(d.c, (n[d.c] || 0) + 1), ariaMinus: d.label + ' eins weniger', ariaPlus: d.label + ' eins mehr' })),
+      ist: eur(total), soll: eur(soll),
+      ok: delta === 0, diff: delta !== 0, diffText: (delta > 0 ? '+' : '') + eur(delta),
+      skim: eur(Math.max(0, total - 15000)),
+      a, b, ta: () => this.setState({ a: !a }), tb: () => this.setState({ b: !b }),
+      both: a && b, notBoth: !(a && b),
+      save: () => this.setState({ saved: true }), open: !saved, saved
+    };
+  }
+}
+</script>
+</body>
+</html>

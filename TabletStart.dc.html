@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Tablet – Kasse zählen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;padding:0 26px;border-radius:14px;font-weight:600;text-decoration:none;font-size:19px;box-sizing:border-box;border:1px solid transparent;font-family:inherit;cursor:pointer}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+.btn.off{background:#E1E6DE;color:#5A665F;cursor:not-allowed}
+.steps{display:flex;gap:8px;align-items:center;font-size:15px;font-weight:600;color:#4F5E55}
+.steps b{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;background:#E1E6DE;color:#3E4A43;font-size:14px}
+.steps .on b{background:#2F6B3F;color:#fff}.steps .on{color:#1C2A22}
+.den{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #EDF1EA}
+.den .v{width:64px;font-weight:600;font-size:18px}
+.den button{width:48px;height:48px;border-radius:10px;border:1px solid #C2CCBC;background:#fff;font-size:24px;font-family:inherit;cursor:pointer;color:#1C2A22}
+.den output{width:44px;text-align:center;font-weight:700;font-size:20px;font-variant-numeric:tabular-nums}
+.den .s{margin-left:auto;font-variant-numeric:tabular-nums;color:#4F5E55;font-size:17px}
+.chip{min-height:48px;padding:0 16px;border-radius:999px;border:1px solid #C2CCBC;background:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;color:#1C2A22}
+.chip.on{background:#1C2A22;border-color:#1C2A22;color:#fff}
+.row{display:flex;justify-content:space-between;align-items:baseline;font-size:18px;padding:6px 0}
+.muted{color:#4F5E55}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; display: flex; flex-direction: column; background: #F2F5EF; font-family: 'Source Sans 3', sans-serif; font-size: 18px; color: #1C2A22; overflow: hidden">
+  <header style="height: 76px; flex: none; background: #fff; border-bottom: 1px solid #DCE3D7; padding: 0 24px; display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 14px">
+      <div style="width: 44px; height: 44px; border-radius: 10px; background: #2F6B3F; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-weight: 700">NF</div>
+      <div><div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px">Hausdienst Sa 03.10.</div><div class="muted" style="font-size: 15px">Sabine W. und Peter L.</div></div>
+    </div>
+    <div class="steps"><span class="on"><b>1</b> Kasse zählen</span><span>›</span><span><b>2</b> Warenbestand</span><span>›</span><span><b>3</b> Verkauf</span></div>
+  </header>
+
+  <div style="flex: 1; display: flex; gap: 20px; padding: 20px 24px; min-height: 0">
+    <section style="flex: 1.25; background: #fff; border: 1px solid #DCE3D7; border-radius: 16px; padding: 16px 22px; display: flex; flex-direction: column">
+      <h2 style="font-size: 22px; margin-bottom: 4px">Wechselgeld in der Kasse zählen</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px">
+        <template data-sc="for" list="{{dens}}" as="d" hint-placeholder-count="10">
+          <div class="den">
+            <span class="v">{{d.label}}</span>
+            <button type="button" onClick="{{d.minus}}" aria-label="{{d.ariaMinus}}">−</button>
+            <output>{{d.n}}</output>
+            <button type="button" onClick="{{d.plus}}" aria-label="{{d.ariaPlus}}">+</button>
+            <span class="s">{{d.sum}}</span>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <section style="flex: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0">
+      <div style="background: #fff; border: 1px solid #DCE3D7; border-radius: 16px; padding: 18px 22px">
+        <div class="row"><span class="muted">Soll laut Datenbank</span><strong>{{soll}}</strong></div>
+        <div class="muted" style="font-size: 14px; margin-top: -2px">Aus dem Tagesabschluss vom So 27.09.</div>
+        <div class="row" style="margin-top: 6px"><span class="muted">Gezählt</span><strong style="font-size: 22px">{{ist}}</strong></div>
+        <template data-sc="if" value="{{ok}}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top: 10px; padding: 12px 14px; border-radius: 10px; background: #DCEFDF; color: #1E5A2E; font-weight: 600">Stimmt überein.</div>
+        </template>
+        <template data-sc="if" value="{{diff}}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top: 10px; padding: 12px 14px; border-radius: 10px; background: #FFF1D6; color: #7A4E00; font-weight: 600">Differenz {{diffText}} – bitte nachzählen oder Korrektur begründen.</div>
+        </template>
+      </div>
+
+      <template data-sc="if" value="{{diff}}" hint-placeholder-val="{{ true }}">
+        <div style="background: #fff; border: 1px solid #DCE3D7; border-radius: 16px; padding: 18px 22px; display: flex; flex-direction: column; gap: 12px">
+          <strong>Warum weicht es ab?</strong>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <template data-sc="for" list="{{reasons}}" as="r" hint-placeholder-count="3">
+              <template data-sc="if" value="{{r.sel}}" hint-placeholder-val="{{ false }}"><button type="button" class="chip on" aria-pressed="true">{{r.label}}</button></template>
+              <template data-sc="if" value="{{r.unsel}}" hint-placeholder-val="{{ true }}"><button type="button" class="chip" onClick="{{r.pick}}" aria-pressed="false">{{r.label}}</button></template>
+            </template>
+          </div>
+          <span class="muted" style="font-size: 15px">Der gezählte Betrag wird als neuer Anfangsbestand übernommen. Die Tätigkeit Kasse sieht die Korrektur im Dashboard.</span>
+        </div>
+      </template>
+
+      <div style="margin-top: auto">
+        <template data-sc="if" value="{{canGo}}" hint-placeholder-val="{{ false }}">
+          <a class="btn pri" href="TabletBestand.dc.html" style="width: 100%">{{goLabel}}</a>
+        </template>
+        <template data-sc="if" value="{{cannotGo}}" hint-placeholder-val="{{ true }}">
+          <span class="btn off" aria-disabled="true" style="width: 100%">Erst Grund für die Differenz wählen</span>
+        </template>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const D = [
+      { c: 5000, label: '50 €' }, { c: 200, label: '2 €' },
+      { c: 2000, label: '20 €' }, { c: 100, label: '1 €' },
+      { c: 1000, label: '10 €' }, { c: 50, label: '50 ct' },
+      { c: 500, label: '5 €' }, { c: 20, label: '20 ct' },
+      { c: 10, label: '10 ct' }, { c: 5, label: '5 ct' }
+    ];
+    const s = this.state || {};
+    const n = s.n ?? { 5000: 1, 2000: 2, 1000: 3, 500: 2, 200: 5, 100: 4, 50: 2, 20: 2, 10: 1, 5: 0 };
+    const eur = (c) => (c < 0 ? '−' : '') + (Math.abs(c) / 100).toFixed(2).replace('.', ',') + ' €';
+    const total = D.reduce((a, d) => a + d.c * (n[d.c] || 0), 0);
+    const soll = 15000;
+    const delta = total - soll;
+    const reason = s.reason ?? null;
+    const R = ['Fehler beim letzten Abschluss', 'Entnahme nicht notiert', 'Sonstiges, Kasse informiert'];
+    const set = (c, v) => this.setState({ n: { ...n, [c]: Math.max(0, v) } });
+    return {
+      dens: D.map((d) => ({
+        label: d.label, n: n[d.c] || 0, sum: eur(d.c * (n[d.c] || 0)),
+        minus: () => set(d.c, (n[d.c] || 0) - 1), plus: () => set(d.c, (n[d.c] || 0) + 1),
+        ariaMinus: d.label + ' eins weniger', ariaPlus: d.label + ' eins mehr'
+      })),
+      soll: eur(soll), ist: eur(total),
+      ok: delta === 0, diff: delta !== 0,
+      diffText: (delta > 0 ? '+' : '') + eur(delta),
+      reasons: R.map((r) => ({ label: r, sel: reason === r, unsel: reason !== r, pick: () => this.setState({ reason: r }) })),
+      canGo: delta === 0 || !!reason, cannotGo: !(delta === 0 || !!reason),
+      goLabel: delta === 0 ? 'Weiter zum Warenbestand' : 'Korrektur übernehmen und weiter'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Beitrag schreiben</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F5EF}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+h1{font-size:34px;line-height:1.1}h2{font-size:22px}h3{font-size:18px}
+.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:#2B3A31;text-decoration:none;font-weight:600;min-height:44px;box-sizing:border-box}
+.nav a:hover{background:#E9EFE6;color:#1C2A22}
+.nav a.on{background:#2F6B3F;color:#fff}
+.cnt{margin-left:auto;background:#FFF1D6;color:#7A4E00;font-size:13px;padding:1px 8px;border-radius:999px}
+.card{background:#fff;border:1px solid #DCE3D7;border-radius:12px;padding:24px;box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid transparent;box-sizing:border-box;font-family:inherit;font-size:15px;cursor:pointer;white-space:nowrap}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+.btn.sec{background:#fff;color:#1C2A22;border-color:#C2CCBC}.btn.sec:hover{background:#EEF2EB;color:#1C2A22}
+.btn.sel{background:#1C2A22;color:#fff;border-color:#1C2A22}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap}
+.t-draft{background:#ECEEEA;color:#3E4A43}.t-review{background:#FFF1D6;color:#7A4E00}
+.muted{color:#4F5E55}
+.fld{display:flex;flex-direction:column;gap:8px}
+label,.lbl{font-weight:600;font-size:15px}
+input[type=text],input[type=date],input[type=number],input[type=datetime-local],textarea,select{font-family:inherit;font-size:16px;color:#1C2A22;border:1px solid #C2CCBC;border-radius:8px;padding:10px 12px;background:#fff;box-sizing:border-box;width:100%;min-height:44px}
+textarea{resize:vertical;line-height:1.5}
+.chk{display:flex;align-items:flex-start;gap:12px;padding:12px;border:1px solid #DCE3D7;border-radius:10px;cursor:pointer;min-height:44px;box-sizing:border-box;font-weight:400}
+.chk input{width:20px;height:20px;margin:2px 0 0;accent-color:#2F6B3F;flex:none}
+.chk strong{display:block}
+.chk small{display:block;color:#4F5E55;font-size:14px;margin-top:2px}
+.tb{display:flex;gap:4px;padding:6px;border:1px solid #C2CCBC;border-bottom:0;border-radius:8px 8px 0 0;background:#F7F9F5}
+.tb button{width:40px;height:40px;border:0;background:transparent;border-radius:6px;color:#2B3A31;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;font-size:16px}
+.tb button:hover{background:#E9EFE6}
+.note{padding:14px 16px;border-radius:10px;background:#FFF6E3;border:1px solid #F0D9A8;color:#5C3D00;font-size:15px;line-height:1.45}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; font-family: 'Source Sans 3', sans-serif; font-size: 16px; color: #1C2A22; background: #F2F5EF">
+  <nav class="nav" aria-label="Hauptmenü" style="flex: 1 1 248px; box-sizing: border-box; padding: 24px 16px; background: #fff; border-right: 1px solid #DCE3D7; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 12px 20px">
+      <div style="width: 36px; height: 36px; border-radius: 8px; background: #2F6B3F; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-weight: 700">NF</div>
+      <div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 18px">Immenreute <span style="color: #4F5E55; font-weight: 600">Intern</span></div>
+    </div>
+    <a href="Uebersicht.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>Übersicht</a>
+    <a class="on" href="Beitraege.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Beiträge<span class="cnt">2</span></a>
+    <a href="Termine.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Termine &amp; News</a>
+    <a href="Kasse.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18M7 15h3"/></svg>Verkauf &amp; Kasse</a>
+    <a href="Engagement.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg>Engagement</a>
+    <a href="Admin.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.8.7 3 2.5 3.5 5.2"/></svg>Benutzer &amp; Rollen</a>
+    <div style="margin-top: auto; padding-top: 24px; display: flex; flex-direction: column; gap: 4px">
+      <div style="display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 10px; background: #F2F5EF; margin-bottom: 8px">
+        <div style="width: 36px; height: 36px; border-radius: 50%; background: #C9DCCB; display: flex; align-items: center; justify-content: center; font-weight: 600">B</div>
+        <div style="line-height: 1.25"><div style="font-weight: 600">Beigel</div><div style="font-size: 13px; color: #4F5E55">Vorstand · Technik</div></div>
+      </div>
+      <a href="UebersichtHelfer.dc.html" style="font-weight: 400">Demo: Helfer-Ansicht</a>
+      <a href="Main.dc.html" style="font-weight: 400">Abmelden</a>
+    </div>
+  </nav>
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 40px 56px; box-sizing: border-box">
+    <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+      <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+        <div>
+          <p class="muted" style="margin: 0 0 6px; font-size: 15px"><a href="Beitraege.dc.html">Beiträge</a> / Neuer Beitrag</p>
+          <h1>Beitrag schreiben <span class="tag t-draft" style="vertical-align: middle; margin-left: 8px">Entwurf</span></h1>
+        </div>
+        <span class="muted" style="font-size: 15px">Automatisch gespeichert · vor 1 Minute</span>
+      </header>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+        <section class="card" style="flex: 3 1 540px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+          <div class="fld">
+            <label for="titel">Titel</label>
+            <input id="titel" type="text" value="Hüttenwochenende im November – jetzt anmelden">
+          </div>
+          <div class="fld">
+            <label for="teaser">Kurztext</label>
+            <textarea id="teaser" rows="2">Zwei Tage Hütte, Wandern und gemeinsames Kochen am Naturfreundehaus Immenreute. Noch 12 Plätze frei!</textarea>
+            <span class="muted" style="font-size: 14px">101 / 140 Zeichen · erscheint in App, Push-Nachricht und E-Mail</span>
+          </div>
+          <div class="fld">
+            <label for="text">Text</label>
+            <div>
+              <div class="tb">
+                <button type="button" aria-label="Fett"><strong>B</strong></button>
+                <button type="button" aria-label="Kursiv"><em style="font-family: Georgia, serif">I</em></button>
+                <button type="button" aria-label="Link einfügen"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg></button>
+                <button type="button" aria-label="Aufzählung"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/></svg></button>
+                <button type="button" aria-label="Bild einfügen"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg></button>
+              </div>
+              <textarea id="text" rows="7" style="border-radius: 0 0 8px 8px">Am 14. und 15. November laden wir zum Hüttenwochenende ins Naturfreundehaus Immenreute ein. Am Samstag geht es auf eine geführte Wanderung, abends kochen wir gemeinsam. Übernachtet wird im Haus – Bettwäsche bitte selbst mitbringen.
+
+Anmeldung bis 1. November über die App oder direkt im Haus.</textarea>
+            </div>
+          </div>
+          <div class="fld">
+            <span class="lbl">Titelbild</span>
+            <div style="border: 2px dashed #C2CCBC; border-radius: 10px; padding: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; background: #F7F9F5">
+              <span style="display: flex; align-items: center; gap: 14px">
+                <span style="width: 48px; height: 48px; border-radius: 10px; background: #E4EFE6; color: #245533; display: flex; align-items: center; justify-content: center"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg></span>
+                <span><strong style="display: block">Bild hierher ziehen</strong><span class="muted" style="font-size: 14px">oder aus der Cloud wählen · Bildrechte bitte klären</span></span>
+              </span>
+              <button type="button" class="btn sec">Bild auswählen</button>
+            </div>
+          </div>
+          <div class="fld">
+            <span class="lbl">Termin (optional)</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px">
+              <div class="fld"><label for="von" style="font-weight: 400">Von</label><input id="von" type="date" value="2026-11-14"></div>
+              <div class="fld"><label for="bis" style="font-weight: 400">Bis</label><input id="bis" type="date" value="2026-11-15"></div>
+              <div class="fld"><label for="ort" style="font-weight: 400">Ort</label><input id="ort" type="text" value="Naturfreundehaus Immenreute"></div>
+              <div class="fld"><label for="plaetze" style="font-weight: 400">Plätze</label><input id="plaetze" type="number" value="30"></div>
+            </div>
+            <label class="chk"><input type="checkbox" checked="{{signup}}" onChange="{{toggleSignup}}"><span><strong>Anmeldung über die App ermöglichen</strong><small>Einzel- und Gruppenanmeldungen landen unter Termine &amp; News</small></span></label>
+          </div>
+        </section>
+
+        <aside style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+          <section class="card" style="display: flex; flex-direction: column; gap: 10px">
+            <h3>Kanäle</h3>
+            <label class="chk"><input type="checkbox" checked="{{web}}" onChange="{{toggleWeb}}"><span><strong>Website</strong><small>Als News auf naturfreunde-geislingen.de</small></span></label>
+            <label class="chk"><input type="checkbox" checked="{{app}}" onChange="{{toggleApp}}"><span><strong>App</strong><small>Im News-Feed der Web-App</small></span></label>
+            <label class="chk"><input type="checkbox" checked="{{push}}" onChange="{{togglePush}}"><span><strong>Push-Nachricht</strong><small>An alle mit aktivierten Benachrichtigungen</small></span></label>
+            <label class="chk"><input type="checkbox" checked="{{mail}}" onChange="{{toggleMail}}"><span><strong>E-Mail-Newsletter</strong><small>Mitglieder-Newsletter · bestätigte Empfänger</small></span></label>
+            <template data-sc="if" value="{{mail}}" hint-placeholder-val="{{ true }}">
+              <div class="note">Die E-Mail geht erst nach der Freigabe raus – nur an Empfänger mit bestätigter Anmeldung (Double-Opt-in). Der Abmeldelink wird automatisch eingefügt.</div>
+            </template>
+          </section>
+
+          <section class="card" style="display: flex; flex-direction: column; gap: 10px">
+            <h3>Sichtbar für</h3>
+            <label class="chk"><input type="radio" name="vis" checked="{{visPublic}}" onChange="{{setPublic}}"><span><strong>Alle</strong><small>Öffentlich auf Website und in der App</small></span></label>
+            <label class="chk"><input type="radio" name="vis" checked="{{visMembers}}" onChange="{{setMembers}}"><span><strong>Nur Mitglieder</strong><small>Nur nach Login sichtbar</small></span></label>
+            <label class="chk"><input type="radio" name="vis" checked="{{visGroup}}" onChange="{{setGroup}}"><span><strong>Eine Gruppe</strong><small>z. B. Hausdienst-Team</small></span></label>
+          </section>
+
+          <section class="card" style="display: flex; flex-direction: column; gap: 10px">
+            <h3>Veröffentlichen</h3>
+            <label class="chk"><input type="radio" name="when" checked="{{now}}" onChange="{{setNow}}"><span><strong>Sofort nach Freigabe</strong></span></label>
+            <label class="chk"><input type="radio" name="when" checked="{{later}}" onChange="{{setLater}}"><span><strong>Zu einem Zeitpunkt</strong></span></label>
+            <template data-sc="if" value="{{later}}" hint-placeholder-val="{{ false }}">
+              <input type="datetime-local" aria-label="Zeitpunkt" value="2026-10-05T18:00">
+            </template>
+          </section>
+
+          <section class="card" style="display: flex; flex-direction: column; gap: 12px">
+            <p class="muted" style="margin: 0; font-size: 15px">Geht nach der Freigabe auf: <strong style="color: #1C2A22">{{chanNames}}</strong></p>
+            <a class="btn pri" href="Beitraege.dc.html">Zur Freigabe senden</a>
+            <a class="btn sec" href="Beitraege.dc.html">Als Entwurf speichern</a>
+            <a href="Freigabe.dc.html" style="font-size: 15px; text-align: center">Als Vorstand: Vorschau &amp; direkt freigeben</a>
+          </section>
+        </aside>
+      </div>
+
+      <section class="card" style="display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+          <h2>Vorschau</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <template data-sc="for" list="{{tabs}}" as="t" hint-placeholder-count="4">
+              <template data-sc="if" value="{{t.sel}}" hint-placeholder-val="{{ false }}">
+                <button type="button" class="btn sel" onClick="{{t.pick}}" aria-pressed="true">{{t.label}}<template data-sc="if" value="{{t.off}}" hint-placeholder-val="{{ false }}"> (aus)</template></button>
+              </template>
+              <template data-sc="if" value="{{t.unsel}}" hint-placeholder-val="{{ true }}">
+                <button type="button" class="btn sec" onClick="{{t.pick}}" aria-pressed="false">{{t.label}}<template data-sc="if" value="{{t.off}}" hint-placeholder-val="{{ false }}"> (aus)</template></button>
+              </template>
+            </template>
+          </div>
+        </div>
+
+        <div style="background: #EEF2EB; border-radius: 12px; padding: 28px; display: flex; justify-content: center; min-height: 420px; box-sizing: border-box">
+          <template data-sc="if" value="{{curOff}}" hint-placeholder-val="{{ false }}">
+            <div style="align-self: center; text-align: center; max-width: 360px">
+              <strong style="display: block; font-size: 18px; margin-bottom: 6px">Dieser Kanal ist nicht ausgewählt</strong>
+              <span class="muted">Aktiviere ihn oben unter „Kanäle“, damit der Beitrag auch hier erscheint.</span>
+            </div>
+          </template>
+
+          <template data-sc="if" value="{{showWeb}}" hint-placeholder-val="{{ true }}">
+            <div style="width: 100%; max-width: 760px; background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #DCE3D7">
+              <div style="padding: 10px 16px; background: #F7F9F5; border-bottom: 1px solid #DCE3D7; font-size: 14px" class="muted">naturfreunde-geislingen.de/news/huettenwochenende-november</div>
+              <div style="height: 200px; background: #2F6B3F; display: flex; align-items: flex-end; padding: 20px; box-sizing: border-box">
+                <svg viewBox="0 0 400 120" style="width: 100%; height: 120px" aria-hidden="true"><path d="M0 120 L90 40 L150 85 L230 10 L320 80 L360 55 L400 90 L400 120 Z" fill="#3E7E4F"/><path d="M0 120 L120 75 L200 105 L300 60 L400 110 L400 120 Z" fill="#245533"/></svg>
+              </div>
+              <div style="padding: 28px; display: flex; flex-direction: column; gap: 12px">
+                <span class="muted" style="font-size: 14px">News · 3. Oktober 2026</span>
+                <h2 style="font-size: 30px; line-height: 1.15">Hüttenwochenende im November – jetzt anmelden</h2>
+                <p style="margin: 0; line-height: 1.6">Am 14. und 15. November laden wir zum Hüttenwochenende ins Naturfreundehaus Immenreute ein. Am Samstag geht es auf eine geführte Wanderung, abends kochen wir gemeinsam. Übernachtet wird im Haus – Bettwäsche bitte selbst mitbringen.</p>
+                <p style="margin: 0; line-height: 1.6">Anmeldung bis 1. November über die App oder direkt im Haus.</p>
+              </div>
+            </div>
+          </template>
+
+          <template data-sc="if" value="{{showApp}}" hint-placeholder-val="{{ false }}">
+            <div style="width: 340px; border: 10px solid #1C2A22; border-radius: 36px; background: #F2F5EF; overflow: hidden">
+              <div style="background: #2F6B3F; color: #fff; padding: 22px 18px 16px; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 20px">Neuigkeiten</div>
+              <div style="padding: 14px; display: flex; flex-direction: column; gap: 12px">
+                <div style="background: #fff; border-radius: 14px; overflow: hidden; border: 1px solid #DCE3D7">
+                  <div style="height: 120px; background: #3E7E4F"></div>
+                  <div style="padding: 14px; display: flex; flex-direction: column; gap: 6px">
+                    <span class="muted" style="font-size: 13px">Heute · Termin 14.–15.11.</span>
+                    <strong style="font-size: 17px; line-height: 1.25">Hüttenwochenende im November – jetzt anmelden</strong>
+                    <span style="font-size: 15px; line-height: 1.4">Zwei Tage Hütte, Wandern und gemeinsames Kochen am Naturfreundehaus Immenreute. Noch 12 Plätze frei!</span>
+                    <template data-sc="if" value="{{signup}}" hint-placeholder-val="{{ true }}">
+                      <span class="btn pri" style="margin-top: 6px">Jetzt anmelden</span>
+                    </template>
+                  </div>
+                </div>
+                <div style="background: #fff; border-radius: 14px; padding: 14px; border: 1px solid #DCE3D7">
+                  <span class="muted" style="font-size: 13px">28.09.</span>
+                  <strong style="display: block; font-size: 16px">Arbeitseinsatz am Haus – Helfer gesucht</strong>
+                </div>
+              </div>
+            </div>
+          </template>
+
+          <template data-sc="if" value="{{showPush}}" hint-placeholder-val="{{ false }}">
+            <div style="align-self: center; width: 100%; max-width: 380px; background: #fff; border-radius: 18px; padding: 16px; display: flex; gap: 12px; border: 1px solid #DCE3D7">
+              <div style="width: 40px; height: 40px; border-radius: 10px; background: #2F6B3F; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-weight: 700; flex: none">NF</div>
+              <div style="min-width: 0">
+                <div class="muted" style="font-size: 13px">Naturfreunde Immenreute · jetzt</div>
+                <strong style="display: block">Hüttenwochenende im November – jetzt anmelden</strong>
+                <span style="font-size: 15px">Zwei Tage Hütte, Wandern und gemeinsames Kochen … Noch 12 Plätze frei!</span>
+              </div>
+            </div>
+          </template>
+
+          <template data-sc="if" value="{{showMail}}" hint-placeholder-val="{{ false }}">
+            <div style="width: 100%; max-width: 640px; background: #fff; border-radius: 10px; border: 1px solid #DCE3D7; overflow: hidden">
+              <div style="padding: 16px 20px; border-bottom: 1px solid #DCE3D7; font-size: 15px; line-height: 1.6">
+                <div><span class="muted">Von:</span> Naturfreunde Geislingen &lt;news@naturfreunde-geislingen.de&gt;</div>
+                <div><span class="muted">Betreff:</span> <strong>Hüttenwochenende im November – jetzt anmelden</strong></div>
+              </div>
+              <div style="padding: 28px; display: flex; flex-direction: column; gap: 16px">
+                <div style="font-family: 'Barlow', sans-serif; font-weight: 700; color: #2F6B3F">Naturfreunde Geislingen · Immenreute</div>
+                <div style="height: 140px; border-radius: 8px; background: #3E7E4F"></div>
+                <strong style="font-size: 22px; line-height: 1.2">Hüttenwochenende im November – jetzt anmelden</strong>
+                <p style="margin: 0; line-height: 1.6">Zwei Tage Hütte, Wandern und gemeinsames Kochen am Naturfreundehaus Immenreute. Noch 12 Plätze frei!</p>
+                <span class="btn pri" style="align-self: flex-start">Weiterlesen &amp; anmelden</span>
+                <p class="muted" style="margin: 8px 0 0; font-size: 13px; line-height: 1.5; border-top: 1px solid #EDF1EA; padding-top: 14px">Du bekommst diese E-Mail, weil du den Newsletter der Naturfreunde Geislingen bestätigt hast. <u>Abmelden</u> · <u>Impressum</u> · <u>Datenschutz</u></p>
+              </div>
+            </div>
+          </template>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const ch = {
+      web: s.web ?? true,
+      app: s.app ?? true,
+      push: s.push ?? false,
+      mail: s.mail ?? true
+    };
+    const tab = s.tab ?? 'web';
+    const vis = s.vis ?? 'public';
+    const when = s.when ?? 'now';
+    const signup = s.signup ?? true;
+    const flip = (k) => () => this.setState({ [k]: !ch[k] });
+    const names = { web: 'Website', app: 'App', push: 'Push', mail: 'E-Mail' };
+    const tabs = ['web', 'app', 'push', 'mail'].map((id) => ({
+      id,
+      label: names[id],
+      sel: tab === id,
+      unsel: tab !== id,
+      off: !ch[id],
+      pick: () => this.setState({ tab: id })
+    }));
+    const active = ['web', 'app', 'push', 'mail'].filter((k) => ch[k]).map((k) => names[k]);
+    const on = ch[tab];
+    return {
+      web: ch.web, app: ch.app, push: ch.push, mail: ch.mail,
+      toggleWeb: flip('web'), toggleApp: flip('app'), togglePush: flip('push'), toggleMail: flip('mail'),
+      signup, toggleSignup: () => this.setState({ signup: !signup }),
+      visPublic: vis === 'public', visMembers: vis === 'members', visGroup: vis === 'group',
+      setPublic: () => this.setState({ vis: 'public' }),
+      setMembers: () => this.setState({ vis: 'members' }),
+      setGroup: () => this.setState({ vis: 'group' }),
+      now: when === 'now', later: when === 'later',
+      setNow: () => this.setState({ when: 'now' }),
+      setLater: () => this.setState({ when: 'later' }),
+      tabs,
+      curOff: !on,
+      showWeb: on && tab === 'web',
+      showApp: on && tab === 'app',
+      showPush: on && tab === 'push',
+      showMail: on && tab === 'mail',
+      chanNames: active.length ? active.join(', ') : 'noch keinen Kanal'
+    };
+  }
+}
+</script>
+</body>
+</html>

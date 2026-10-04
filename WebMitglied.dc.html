@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Website – Mitmachen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBFCFA}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.top a.n{color:#1C2A22;text-decoration:none;font-weight:600;padding:10px 12px;border-radius:8px;min-height:44px;display:inline-flex;align-items:center;box-sizing:border-box}
+.top a.n:hover{background:#EEF2EB}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:10px;font-weight:600;text-decoration:none;border:1px solid transparent;box-sizing:border-box;font-size:16px;white-space:nowrap;font-family:inherit;cursor:pointer}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+.btn.sec{background:#fff;color:#1C2A22;border-color:#C2CCBC}
+.opt{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:16px;border:1px solid #DCE3D7;background:#fff;text-align:left;font-family:inherit;font-size:17px;color:#1C2A22;cursor:pointer;box-sizing:border-box;width:100%}
+.opt.sel{border:2px solid #2F6B3F;background:#F5FAF5}
+.muted{color:#4F5E55}
+.kicker{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#2F6B3F}
+.fld{display:flex;flex-direction:column;gap:6px}
+label{font-weight:600;font-size:15px}
+input[type=text],input[type=email],textarea{font-family:inherit;font-size:16px;color:#1C2A22;border:1px solid #C2CCBC;border-radius:10px;padding:12px;background:#fff;box-sizing:border-box;width:100%;min-height:48px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid #C2CCBC;background:#fff;font-weight:400;font-size:16px;cursor:pointer}
+.chip input{width:20px;height:20px;margin:0;accent-color:#2F6B3F}
+ul.ck{margin:0;padding-left:22px;line-height:1.7}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.foot a{color:#DCEBDE;text-decoration:none}
+</style>
+</helmet>
+<div style="font-family: 'Source Sans 3', sans-serif; font-size: 17px; color: #1C2A22; background: #FBFCFA">
+  <header class="top" style="background: #fff; border-bottom: 1px solid #DCE3D7">
+    <div class="wrap" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; min-height: 80px">
+      <a href="WebStart.dc.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #1C2A22">
+        <span style="width: 48px; height: 48px; border-radius: 12px; background: #2F6B3F; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-weight: 700">NF</span>
+        <span style="line-height: 1.15"><span style="display: block; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 20px">Naturfreunde Geislingen</span><span class="muted" style="font-size: 15px">Naturfreundehaus Immenreute</span></span>
+      </a>
+      <nav aria-label="Hauptmenü" style="display: flex; flex-wrap: wrap; gap: 2px">
+        <a class="n" href="WebStart.dc.html">Start</a>
+        <a class="n" href="WebNews.dc.html">News</a>
+        <a class="n" href="WebVeranstaltungen.dc.html">Veranstaltungen</a>
+        <a class="n" href="WebStart.dc.html">Angebot</a>
+        <a class="n" href="WebStart.dc.html">Hausdienst</a>
+        <a class="n" href="#galerie">Galerie</a>
+        <a class="btn pri" href="WebMitglied.dc.html" style="min-height: 44px; margin-left: 8px; box-shadow: 0 0 0 3px #C9DCCB">Mitglied werden</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="wrap" style="padding-top: 56px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 32px">
+    <div style="max-width: 760px">
+      <p class="kicker" style="margin: 0 0 6px">Mitmachen</p>
+      <h1 style="font-size: 50px; line-height: 1.05">Werde Teil der Naturfreunde Geislingen</h1>
+      <p style="margin: 18px 0 0; font-size: 20px; line-height: 1.5" class="muted">Ob als Mitglied, als Helferin im Hausdienst oder beides: Wähle, was zu dir passt. Wir melden uns innerhalb weniger Tage.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+      <template data-sc="for" list="{{opts}}" as="o" hint-placeholder-count="3">
+        <template data-sc="if" value="{{o.sel}}" hint-placeholder-val="{{ false }}">
+          <button type="button" class="opt sel" aria-pressed="true"><h2 style="font-size: 26px">{{o.title}}</h2><span class="muted" style="line-height: 1.5">{{o.text}}</span><strong style="color: #1E5A2E">Ausgewählt</strong></button>
+        </template>
+        <template data-sc="if" value="{{o.unsel}}" hint-placeholder-val="{{ true }}">
+          <button type="button" class="opt" onClick="{{o.pick}}" aria-pressed="false"><h2 style="font-size: 26px">{{o.title}}</h2><span class="muted" style="line-height: 1.5">{{o.text}}</span><span style="color: #245533; font-weight: 600">Auswählen</span></button>
+        </template>
+      </template>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start">
+      <form style="flex: 2 1 520px; min-width: 0; background: #fff; border: 1px solid #DCE3D7; border-radius: 16px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px">
+        <template data-sc="if" value="{{form}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <h2 style="font-size: 28px">{{formTitle}}</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+              <div class="fld"><label for="vn">Vorname</label><input id="vn" type="text"></div>
+              <div class="fld"><label for="nn">Nachname</label><input id="nn" type="text"></div>
+            </div>
+            <div class="fld"><label for="em">E-Mail</label><input id="em" type="email"></div>
+            <template data-sc="if" value="{{helps}}" hint-placeholder-val="{{ true }}">
+              <div class="fld"><span style="font-weight: 600; font-size: 15px">Wobei würdest du gern helfen?</span>
+                <div class="chips">
+                  <label class="chip"><input type="checkbox" checked>Hausdienst</label>
+                  <label class="chip"><input type="checkbox">Arbeitseinsätze</label>
+                  <label class="chip"><input type="checkbox">Veranstaltungen</label>
+                  <label class="chip"><input type="checkbox">Fotos &amp; Galerie</label>
+                  <label class="chip"><input type="checkbox">Technik</label>
+                </div>
+              </div>
+            </template>
+            <div class="fld"><label for="msg">Möchtest du uns noch etwas sagen? (optional)</label><textarea id="msg" rows="3"></textarea></div>
+            <button type="button" class="btn pri" onClick="{{submit}}" style="align-self: flex-start">Absenden</button>
+            <span class="muted" style="font-size: 14px">{{note}}</span>
+          </div>
+        </template>
+        <template data-sc="if" value="{{done}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; gap: 16px; align-items: flex-start; padding: 12px 0">
+            <span style="width: 52px; height: 52px; border-radius: 50%; background: #DCEFDF; color: #1E5A2E; display: flex; align-items: center; justify-content: center; flex: none"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+            <div><h2 style="font-size: 26px">Schön, dass du dabei sein willst!</h2><p class="muted" style="margin: 8px 0 0; line-height: 1.5">Der Vorstand meldet sich in den nächsten Tagen. Danach bekommst du deinen Zugang zur Naturfreunde-Cloud und zur App.</p></div>
+          </div>
+        </template>
+      </form>
+      <aside style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+        <div style="background: #E4EFE6; border-radius: 16px; padding: 26px">
+          <h3 style="font-size: 21px; margin-bottom: 8px">Was du davon hast</h3>
+          <ul class="ck"><li>News und Termine in der App</li><li>Anmeldung mit einem Klick</li><li>Ein Haus, das wir gemeinsam tragen</li><li>[VORTEILE LAUT SATZUNG, z. B. Ermäßigungen]</li></ul>
+        </div>
+        <div style="background: #fff; border: 1px solid #DCE3D7; border-radius: 16px; padding: 26px">
+          <h3 style="font-size: 21px; margin-bottom: 8px">Beitrag</h3>
+          <p style="margin: 0; line-height: 1.5" class="muted">[BEITRÄGE PRO JAHR: Erwachsene, Familien, Ermäßigt]</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="foot" style="background: #1C2A22; color: #DCEBDE">
+    <div class="wrap" style="display: flex; flex-wrap: wrap; gap: 40px; padding-top: 40px; padding-bottom: 40px; justify-content: space-between">
+      <span><strong style="color: #fff">Naturfreunde Geislingen</strong> · [ADRESSE]</span>
+      <nav aria-label="Fußzeile" style="display: flex; flex-wrap: wrap; gap: 20px"><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a><a href="Main.dc.html">Intern</a></nav>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const pick = s.pick ?? 'beides';
+    const done = s.done ?? false;
+    const O = [
+      { id: 'mitglied', title: 'Mitglied werden', text: 'Du unterstützt den Verein und das Haus, bekommst Mitglieder-News und kannst bei allem mitreden.' },
+      { id: 'helfen', title: 'Mithelfen', text: 'Hausdienst, Arbeitseinsätze oder Veranstaltungen – so oft, wie es dir passt. Keine Mitgliedschaft nötig.' },
+      { id: 'beides', title: 'Beides', text: 'Mitglied sein und mit anpacken. Der häufigste Weg in den Verein.' }
+    ];
+    const titles = { mitglied: 'Mitgliedsantrag', helfen: 'Ich möchte helfen', beides: 'Mitglied werden und helfen' };
+    return {
+      opts: O.map((o) => ({ ...o, sel: o.id === pick, unsel: o.id !== pick, pick: () => this.setState({ pick: o.id, done: false }) })),
+      formTitle: titles[pick],
+      helps: pick !== 'mitglied',
+      note: pick === 'helfen' ? 'Wir speichern deine Angaben nur, um dich wegen der Mithilfe zu kontaktieren.' : 'Den unterschriebenen Antrag schicken wir dir danach per E-Mail zu. [ABLAUF LAUT SATZUNG PRÜFEN]',
+      form: !done, done,
+      submit: () => this.setState({ done: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Tablet – Warenbestand</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;padding:0 26px;border-radius:14px;font-weight:600;text-decoration:none;font-size:19px;box-sizing:border-box;border:1px solid transparent;font-family:inherit;cursor:pointer}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+.btn.sec{background:#fff;color:#1C2A22;border-color:#C2CCBC}
+.steps{display:flex;gap:8px;align-items:center;font-size:15px;font-weight:600;color:#4F5E55}
+.steps b{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;background:#E1E6DE;color:#3E4A43;font-size:14px}
+.steps .on b{background:#2F6B3F;color:#fff}.steps .on{color:#1C2A22}
+.steps .dn b{background:#DCEFDF;color:#1E5A2E}
+.it{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:10px}
+.it.ch{background:#FFF6E3}
+.it .nm{flex:1;min-width:0;font-weight:600}
+.it .so{width:84px;text-align:right;color:#4F5E55;font-size:15px}
+.it button{width:46px;height:46px;border-radius:10px;border:1px solid #C2CCBC;background:#fff;font-size:22px;font-family:inherit;cursor:pointer;color:#1C2A22}
+.it output{width:40px;text-align:center;font-weight:700;font-size:19px;font-variant-numeric:tabular-nums}
+.low{font-size:13px;font-weight:600;color:#7A4E00;background:#FFF1D6;border-radius:999px;padding:1px 8px;margin-left:6px}
+.muted{color:#4F5E55}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; display: flex; flex-direction: column; background: #F2F5EF; font-family: 'Source Sans 3', sans-serif; font-size: 18px; color: #1C2A22; overflow: hidden">
+  <header style="height: 76px; flex: none; background: #fff; border-bottom: 1px solid #DCE3D7; padding: 0 24px; display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 14px">
+      <div style="width: 44px; height: 44px; border-radius: 10px; background: #2F6B3F; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-weight: 700">NF</div>
+      <div><div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 22px">Warenbestand prüfen</div><div class="muted" style="font-size: 15px">Soll aus der Datenbank – bitte mit dem Lager abgleichen</div></div>
+    </div>
+    <div class="steps"><span class="dn"><b>1</b> Kasse zählen</span><span>›</span><span class="on"><b>2</b> Warenbestand</span><span>›</span><span><b>3</b> Verkauf</span></div>
+  </header>
+
+  <div style="flex: 1; display: flex; gap: 20px; padding: 18px 24px; min-height: 0">
+    <section style="flex: 1; background: #fff; border: 1px solid #DCE3D7; border-radius: 16px; padding: 12px 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; align-content: start">
+      <div class="it" style="padding-bottom: 2px"><span class="nm muted" style="font-size: 14px">Artikel</span><span class="so" style="font-size: 14px">Soll</span><span style="width: 142px; text-align: center; font-size: 14px" class="muted">Gezählt</span></div>
+      <div class="it" style="padding-bottom: 2px"><span class="nm muted" style="font-size: 14px">Artikel</span><span class="so" style="font-size: 14px">Soll</span><span style="width: 142px; text-align: center; font-size: 14px" class="muted">Gezählt</span></div>
+      <template data-sc="for" list="{{items}}" as="i" hint-placeholder-count="12">
+        <template data-sc="if" value="{{i.changed}}" hint-placeholder-val="{{ false }}">
+          <div class="it ch"><span class="nm">{{i.name}}<template data-sc="if" value="{{i.low}}" hint-placeholder-val="{{ false }}"><span class="low">nachkaufen</span></template></span><span class="so">{{i.soll}}</span><button type="button" onClick="{{i.minus}}" aria-label="{{i.ariaMinus}}">−</button><output>{{i.ist}}</output><button type="button" onClick="{{i.plus}}" aria-label="{{i.ariaPlus}}">+</button></div>
+        </template>
+        <template data-sc="if" value="{{i.same}}" hint-placeholder-val="{{ true }}">
+          <div class="it"><span class="nm">{{i.name}}<template data-sc="if" value="{{i.low}}" hint-placeholder-val="{{ false }}"><span class="low">nachkaufen</span></template></span><span class="so">{{i.soll}}</span><button type="button" onClick="{{i.minus}}" aria-label="{{i.ariaMinus}}">−</button><output>{{i.ist}}</output><button type="button" onClick="{{i.plus}}" aria-label="{{i.ariaPlus}}">+</button></div>
+        </template>
+      </template>
+    </section>
+    <aside style="width: 300px; flex: none; display: flex; flex-direction: column; gap: 14px">
+      <div style="background: #fff; border: 1px solid #DCE3D7; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px">
+        <strong style="font-size: 20px">{{changeTitle}}</strong>
+        <span class="muted" style="font-size: 15px; line-height: 1.4">{{changeText}}</span>
+      </div>
+      <div style="background: #FFF6E3; border: 1px solid #F0D9A8; border-radius: 16px; padding: 16px 20px; font-size: 15px; line-height: 1.45; color: #5C3D00">Was „nachkaufen“ zeigt, landet nach dem Abschluss auf der Einkaufsliste im Kanban-Board „Haus“.</div>
+      <a class="btn pri" href="TabletVerkauf.dc.html" style="margin-top: auto">Bestand bestätigen</a>
+      <a class="btn sec" href="TabletStart.dc.html">Zurück</a>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const P = [
+      { id: 'wasser', name: 'Wasser 0,5 l', soll: 24, min: 12 },
+      { id: 'schorle', name: 'Apfelschorle', soll: 18, min: 12 },
+      { id: 'limo', name: 'Limo', soll: 14, min: 10 },
+      { id: 'bier', name: 'Bier 0,5 l', soll: 30, min: 20 },
+      { id: 'radler', name: 'Radler', soll: 12, min: 10 },
+      { id: 'wein', name: 'Weinschorle', soll: 8, min: 6 },
+      { id: 'kuchen', name: 'Kuchen (Stück)', soll: 0, min: 0 },
+      { id: 'wurst', name: 'Rote Wurst', soll: 20, min: 10 },
+      { id: 'brezel', name: 'Brezel', soll: 0, min: 0 },
+      { id: 'vesper', name: 'Vesperteller', soll: 6, min: 4 },
+      { id: 'eis', name: 'Eis', soll: 15, min: 8 },
+      { id: 'karte', name: 'Wanderkarte', soll: 9, min: 3 }
+    ];
+    const s = this.state || {};
+    const ist = s.ist ?? {};
+    const val = (p) => (ist[p.id] ?? p.soll);
+    const set = (p, v) => this.setState({ ist: { ...ist, [p.id]: Math.max(0, v) } });
+    const changed = P.filter((p) => val(p) !== p.soll).length;
+    return {
+      items: P.map((p) => ({
+        name: p.name, soll: p.soll, ist: val(p),
+        changed: val(p) !== p.soll, same: val(p) === p.soll,
+        low: p.min > 0 && val(p) < p.min,
+        minus: () => set(p, val(p) - 1), plus: () => set(p, val(p) + 1),
+        ariaMinus: p.name + ' eins weniger', ariaPlus: p.name + ' eins mehr'
+      })),
+      changeTitle: changed === 0 ? 'Alles wie in der Datenbank' : changed + (changed === 1 ? ' Korrektur' : ' Korrekturen'),
+      changeText: changed === 0 ? 'Stimmt etwas nicht, mit − und + korrigieren. Kuchen und Brezeln kommen frisch dazu und werden hier eingetragen.' : 'Die neuen Zahlen werden als Bestand übernommen und mit „Zählung Hausdienst“ protokolliert.'
+    };
+  }
+}
+</script>
+</body>
+</html>

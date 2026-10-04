@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Übersicht Vorstand</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F5EF}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+h1{font-size:34px;line-height:1.1}h2{font-size:22px}h3{font-size:18px}
+.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:#2B3A31;text-decoration:none;font-weight:600;min-height:44px;box-sizing:border-box}
+.nav a:hover{background:#E9EFE6;color:#1C2A22}
+.nav a.on{background:#2F6B3F;color:#fff}
+.cnt{margin-left:auto;background:#FFF1D6;color:#7A4E00;font-size:13px;padding:1px 8px;border-radius:999px}
+.card{background:#fff;border:1px solid #DCE3D7;border-radius:12px;padding:24px;box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid transparent;box-sizing:border-box;font-family:inherit;font-size:15px;cursor:pointer;white-space:nowrap}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+.btn.sec{background:#fff;color:#1C2A22;border-color:#C2CCBC}.btn.sec:hover{background:#EEF2EB;color:#1C2A22}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:600;white-space:nowrap}
+.t-draft{background:#ECEEEA;color:#3E4A43}.t-review{background:#FFF1D6;color:#7A4E00}.t-plan{background:#E3ECF8;color:#1F4E89}.t-live{background:#DCEFDF;color:#1E5A2E}
+.muted{color:#4F5E55}
+.tile{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:#1C2A22;background:#fff;border:1px solid #DCE3D7;border-radius:12px;padding:20px;box-sizing:border-box;min-height:132px}
+.tile:hover{border-color:#2F6B3F;color:#1C2A22}
+.ico{width:40px;height:40px;border-radius:10px;background:#E4EFE6;color:#245533;display:flex;align-items:center;justify-content:center}
+.row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #EDF1EA;text-decoration:none;color:#1C2A22}
+.row:hover{color:#245533}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+table{border-collapse:collapse;width:100%}
+th{text-align:left;font-size:13px;font-weight:600;color:#4F5E55;text-transform:uppercase;letter-spacing:.04em;padding:10px 12px;border-bottom:1px solid #DCE3D7;white-space:nowrap}
+td{padding:12px;border-bottom:1px solid #EDF1EA;white-space:nowrap}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; font-family: 'Source Sans 3', sans-serif; font-size: 16px; color: #1C2A22; background: #F2F5EF">
+  <nav class="nav" aria-label="Hauptmenü" style="flex: 1 1 248px; box-sizing: border-box; padding: 24px 16px; background: #fff; border-right: 1px solid #DCE3D7; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 4px 12px 20px">
+      <div style="width: 36px; height: 36px; border-radius: 8px; background: #2F6B3F; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-weight: 700">NF</div>
+      <div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 18px">Immenreute <span style="color: #4F5E55; font-weight: 600">Intern</span></div>
+    </div>
+    <a class="on" href="Uebersicht.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>Übersicht</a>
+    <a href="Beitraege.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Beiträge<span class="cnt">2</span></a>
+    <a href="Termine.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Termine &amp; News</a>
+    <a href="Kasse.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><path d="M3 11h18M7 15h3"/></svg>Verkauf &amp; Kasse</a>
+    <a href="Engagement.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg>Engagement</a>
+    <a href="Admin.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.8.7 3 2.5 3.5 5.2"/></svg>Benutzer &amp; Rollen</a>
+    <div style="margin-top: auto; padding-top: 24px; display: flex; flex-direction: column; gap: 4px">
+      <div style="display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 10px; background: #F2F5EF; margin-bottom: 8px">
+        <div style="width: 36px; height: 36px; border-radius: 50%; background: #C9DCCB; display: flex; align-items: center; justify-content: center; font-weight: 600">B</div>
+        <div style="line-height: 1.25"><div style="font-weight: 600">Beigel</div><div style="font-size: 13px; color: #4F5E55">Vorstand · Technik</div></div>
+      </div>
+      <a href="UebersichtHelfer.dc.html" style="font-weight: 400">Demo: Helfer-Ansicht</a>
+      <a href="Main.dc.html" style="font-weight: 400">Abmelden</a>
+    </div>
+  </nav>
+  <main style="flex: 999 1 560px; min-width: 0; padding: 32px 40px 56px; box-sizing: border-box">
+    <div style="max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+      <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+        <div>
+          <p class="muted" style="margin: 0 0 6px; font-size: 15px">Samstag, 3. Oktober 2026 · <span class="tag t-draft">Beispieldaten</span></p>
+          <h1>Guten Morgen, Beigel</h1>
+        </div>
+        <a class="btn pri" href="Editor.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Neuer Beitrag</a>
+      </header>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+        <a class="tile" href="Beitraege.dc.html" style="min-height: 0">
+          <span class="muted" style="font-size: 15px; font-weight: 600">Warten auf Freigabe</span>
+          <span style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 36px">2 Beiträge</span>
+          <span style="color: #245533; font-weight: 600">Jetzt prüfen →</span>
+        </a>
+        <a class="tile" href="Kasse.dc.html" style="min-height: 0">
+          <span class="muted" style="font-size: 15px; font-weight: 600">Umsatz letztes Wochenende</span>
+          <span style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 36px">650,70 €</span>
+          <span class="muted" style="font-size: 15px">Sa 26.09. + So 27.09. · 1 Differenz offen</span>
+        </a>
+        <a class="tile" href="Termine.dc.html" style="min-height: 0">
+          <span class="muted" style="font-size: 15px; font-weight: 600">Nächster Termin</span>
+          <span style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.15">Hausdienst<br>Sa 10. + So 11.10.</span>
+          <span class="muted" style="font-size: 15px">1 Schicht noch offen</span>
+        </a>
+      </div>
+
+      <section style="display: flex; flex-direction: column; gap: 14px">
+        <h2>Dienste</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+          <a class="tile" href="https://cloud.naturfreunde-geislingen.de">
+            <span class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.4 1.5A3.3 3.3 0 0 0 7 18z"/></svg></span>
+            <strong>Cloud</strong><span class="muted" style="font-size: 15px">Dateien, Fotos, Kalender</span>
+          </a>
+          <a class="tile" href="Kasse.dc.html">
+            <span class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>
+            <strong>Abrechnung</strong><span class="muted" style="font-size: 15px">Kassenbuch Naturfreundehaus</span>
+          </a>
+          <a class="tile" href="https://naturfreunde-geislingen.de">
+            <span class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></svg></span>
+            <strong>Website</strong><span class="muted" style="font-size: 15px">WordPress-Verwaltung</span>
+          </a>
+          <a class="tile" href="#dienste">
+            <span class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg></span>
+            <strong>Wiki <span class="tag t-draft" style="margin-left: 4px">geplant</span></strong><span class="muted" style="font-size: 15px">Anleitungen &amp; Wissen</span>
+          </a>
+          <a class="tile" href="#dienste">
+            <span class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="10" rx="1"/><rect x="17" y="4" width="4" height="13" rx="1"/></svg></span>
+            <strong>Kanban <span class="tag t-draft" style="margin-left: 4px">geplant</span></strong><span class="muted" style="font-size: 15px">Aufgaben im Verein</span>
+          </a>
+          <a class="tile" href="Termine.dc.html">
+            <span class="ico"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18h2"/></svg></span>
+            <strong>News-App <span class="tag t-draft" style="margin-left: 4px">geplant</span></strong><span class="muted" style="font-size: 15px">News &amp; Anmeldungen</span>
+          </a>
+        </div>
+      </section>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px">
+        <section class="card" style="flex: 1 1 420px; min-width: 0">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 4px">
+            <h2>Zur Freigabe</h2><a href="Beitraege.dc.html" style="font-weight: 600">Alle Beiträge</a>
+          </div>
+          <a class="row" href="Freigabe.dc.html">
+            <span style="flex: 1; min-width: 0"><strong style="display: block">Hüttenwochenende im November – jetzt anmelden</strong><span class="muted" style="font-size: 15px">Anna K. · Website, App, E-Mail · seit gestern</span></span>
+            <span class="tag t-review">Zur Freigabe</span>
+          </a>
+          <a class="row" href="Freigabe.dc.html" style="border-bottom: 0">
+            <span style="flex: 1; min-width: 0"><strong style="display: block">Neue Öffnungszeiten im Winter</strong><span class="muted" style="font-size: 15px">Markus S. · Website, App, Push · seit 2 Tagen</span></span>
+            <span class="tag t-review">Zur Freigabe</span>
+          </a>
+        </section>
+        <section class="card" style="flex: 1 1 420px; min-width: 0">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 4px">
+            <h2>Nächste Termine</h2><a href="Termine.dc.html" style="font-weight: 600">Alle Termine</a>
+          </div>
+          <a class="row" href="Termine.dc.html">
+            <span style="width: 56px; text-align: center; flex: none"><strong style="display: block; font-family: 'Barlow', sans-serif; font-size: 22px">10.</strong><span class="muted" style="font-size: 13px">OKT</span></span>
+            <span style="flex: 1"><strong style="display: block">Hausdienst</strong><span class="muted" style="font-size: 15px">Sa + So · 1 Schicht offen</span></span>
+          </a>
+          <a class="row" href="Termine.dc.html">
+            <span style="width: 56px; text-align: center; flex: none"><strong style="display: block; font-family: 'Barlow', sans-serif; font-size: 22px">24.</strong><span class="muted" style="font-size: 13px">OKT</span></span>
+            <span style="flex: 1"><strong style="display: block">Arbeitseinsatz am Haus</strong><span class="muted" style="font-size: 15px">9 Zusagen</span></span>
+          </a>
+          <a class="row" href="Termine.dc.html" style="border-bottom: 0">
+            <span style="width: 56px; text-align: center; flex: none"><strong style="display: block; font-family: 'Barlow', sans-serif; font-size: 22px">14.</strong><span class="muted" style="font-size: 13px">NOV</span></span>
+            <span style="flex: 1"><strong style="display: block">Hüttenwochenende</strong><span class="muted" style="font-size: 15px">18 von 30 Plätzen belegt</span></span>
+          </a>
+        </section>
+      </div>
+
+      <section class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px">
+          <h2>Kasse – letzte Tagesabschlüsse</h2><a href="Kasse.dc.html" style="font-weight: 600">Zur Kasse</a>
+        </div>
+        <div style="overflow-x: auto">
+          <table>
+            <thead><tr><th>Tag</th><th>Hausdienst</th><th style="text-align: right">Umsatz</th><th style="text-align: right">Differenz zum Tablet</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Sa 03.10.</td><td>Sabine W.</td><td style="text-align: right">–</td><td style="text-align: right">–</td><td><span class="tag t-plan">Offen</span></td></tr>
+              <tr><td>So 27.09.</td><td>Markus S.</td><td style="text-align: right">262,50 €</td><td style="text-align: right">+4,50 €</td><td><span class="tag t-review">Prüfen</span></td></tr>
+              <tr><td>Sa 26.09.</td><td>Anna K.</td><td style="text-align: right">388,20 €</td><td style="text-align: right">0,00 €</td><td><span class="tag t-live">Abgeschlossen</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

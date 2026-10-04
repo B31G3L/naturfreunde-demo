@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Anmeldung</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F5EF}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+.card{background:#fff;border:1px solid #DCE3D7;border-radius:12px;padding:24px;box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid transparent;box-sizing:border-box;font-family:inherit;font-size:16px;cursor:pointer}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; font-family: 'Source Sans 3', sans-serif; color: #1C2A22; background: #F2F5EF">
+  <section style="flex: 1 1 480px; background: #2F6B3F; color: #fff; padding: 56px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 48px">
+    <div style="display: flex; align-items: center; gap: 12px">
+      <div style="width: 44px; height: 44px; border-radius: 10px; background: #fff; color: #2F6B3F; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 18px">NF</div>
+      <div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.1">Immenreute <span style="font-weight: 600; color: #DCEBDE">Intern</span></div>
+    </div>
+    <div>
+      <p style="margin: 0 0 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-size: 14px; color: #DCEBDE">Naturfreunde Geislingen</p>
+      <h1 style="color: #fff; font-size: 56px; line-height: 1.05; max-width: 560px">Alles für den Verein an einem Ort.</h1>
+      <p style="font-size: 19px; line-height: 1.5; color: #E8F2EA; max-width: 520px; margin: 20px 0 0">Dienste, Termine, Kasse und Beiträge für Website, App und E-Mail – mit einem einzigen Login.</p>
+    </div>
+    <div style="font-size: 15px; color: #DCEBDE">Naturfreundehaus Immenreute</div>
+  </section>
+  <section style="flex: 1 1 420px; display: flex; align-items: center; justify-content: center; padding: 48px 24px; box-sizing: border-box">
+    <div class="card" style="width: 100%; max-width: 440px; padding: 40px; display: flex; flex-direction: column; gap: 20px">
+      <h2 style="font-size: 32px">Anmelden</h2>
+      <p style="margin: 0; color: #4F5E55; line-height: 1.5; font-size: 17px">Melde dich mit deinem Konto der Naturfreunde-Cloud an. Ein zusätzliches Passwort brauchst du nicht.</p>
+      <a class="btn pri" href="Uebersicht.dc.html" style="width: 100%">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.4 1.5A3.3 3.3 0 0 0 7 18z"/></svg>
+        Mit Naturfreunde-Cloud anmelden
+      </a>
+      <p style="margin: 0; font-size: 15px; color: #4F5E55">Noch kein Zugang? Melde dich beim Vorstand.</p>
+      <div style="border-top: 1px solid #DCE3D7; padding-top: 18px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 13px; font-weight: 600; color: #4F5E55; text-transform: uppercase; letter-spacing: 0.06em">Demo-Ansichten</span>
+        <a href="Uebersicht.dc.html" style="font-weight: 600">Als Vorstand / Admin ansehen</a>
+        <a href="UebersichtHelfer.dc.html" style="font-weight: 600">Als Helfer ansehen</a>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

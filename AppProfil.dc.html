@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>App – Profil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0}
+.tabbar{display:flex;background:#fff;border-top:1px solid #DCE3D7;padding:8px 10px 18px;gap:6px}
+.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;color:#4F5E55;font-size:13px;font-weight:600;min-height:52px;border-radius:12px}
+.tabbar a.on{color:#1E5A2E;background:#E4EFE6}
+.grp{background:#fff;border:1px solid #DCE3D7;border-radius:14px;padding:4px 14px}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;border-bottom:1px solid #EDF1EA;cursor:pointer;font-weight:400}
+.sw:last-child{border-bottom:0}
+.sw input{width:24px;height:24px;margin:0;accent-color:#2F6B3F;flex:none}
+.gh{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4F5E55;margin:4px 4px -2px}
+.lnk{display:flex;align-items:center;justify-content:space-between;min-height:52px;border-bottom:1px solid #EDF1EA;text-decoration:none;color:#1C2A22}
+.lnk:last-child{border-bottom:0}
+.muted{color:#4F5E55}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F2F5EF; font-family: 'Source Sans 3', sans-serif; font-size: 16px; color: #1C2A22; overflow: hidden">
+  <header style="background: #2F6B3F; color: #fff; padding: 28px 20px 20px; display: flex; align-items: center; gap: 14px">
+    <div style="width: 56px; height: 56px; border-radius: 50%; background: #DCEBDE; color: #1C2A22; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 22px">A</div>
+    <div><h1 style="font-size: 24px; color: #fff">Anna K.</h1><div style="font-size: 15px; color: #DCEBDE">Mitglied · Hausdienst-Team</div></div>
+  </header>
+  <div style="flex: 1; overflow: hidden; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px">
+    <div class="gh">Benachrichtigungen</div>
+    <div class="grp">
+      <label class="sw"><span>Neue Beiträge</span><input type="checkbox" checked="{{n1}}" onChange="{{t1}}"></label>
+      <label class="sw"><span>Termine &amp; Anmeldungen</span><input type="checkbox" checked="{{n2}}" onChange="{{t2}}"></label>
+      <label class="sw"><span>Erinnerung an meinen Hausdienst</span><input type="checkbox" checked="{{n3}}" onChange="{{t3}}"></label>
+    </div>
+    <div class="gh">E-Mail-Newsletter</div>
+    <div class="grp" style="padding: 14px">
+      <template data-sc="if" value="{{nl}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+          <span><strong style="display: block">Angemeldet</strong><span class="muted" style="font-size: 14px">bestätigt am 12.03.2026</span></span>
+          <button type="button" onClick="{{toggleNl}}" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #C2CCBC; background: #fff; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Abmelden</button>
+        </div>
+      </template>
+      <template data-sc="if" value="{{noNl}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+          <span><strong style="display: block">Nicht angemeldet</strong><span class="muted" style="font-size: 14px">Bestätigungs-Mail nach Anmeldung</span></span>
+          <button type="button" onClick="{{toggleNl}}" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 0; background: #2F6B3F; color: #fff; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Anmelden</button>
+        </div>
+      </template>
+    </div>
+    <div class="gh">Konto</div>
+    <div class="grp">
+      <a class="lnk" href="AppTermine.dc.html"><span>Meine Anmeldungen &amp; Dienste</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      <a class="lnk" href="#datenschutz"><span>Datenschutz &amp; Impressum</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+      <a class="lnk" href="AppFeed.dc.html"><span>Abmelden</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+  <nav class="tabbar" aria-label="App-Navigation">
+    <a href="AppFeed.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>News</a>
+    <a href="AppTermine.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Termine</a>
+    <a href="AppEinsatz.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg>Einsatz</a>
+    <a class="on" href="AppProfil.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.2-6 8-6s7 2 8 6"/></svg>Profil</a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const n1 = s.n1 ?? true, n2 = s.n2 ?? true, n3 = s.n3 ?? true, nl = s.nl ?? true;
+    return {
+      n1, n2, n3, nl, noNl: !nl,
+      t1: () => this.setState({ n1: !n1 }),
+      t2: () => this.setState({ n2: !n2 }),
+      t3: () => this.setState({ n3: !n3 }),
+      toggleNl: () => this.setState({ nl: !nl })
+    };
+  }
+}
+</script>
+</body>
+</html>

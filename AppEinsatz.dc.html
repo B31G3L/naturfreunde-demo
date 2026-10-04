@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>App – Mein Einsatz</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0}
+.tabbar{display:flex;background:#fff;border-top:1px solid #DCE3D7;padding:8px 8px 18px;gap:4px}
+.tabbar a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-decoration:none;color:#4F5E55;font-size:13px;font-weight:600;min-height:52px;border-radius:12px}
+.tabbar a.on{color:#1E5A2E;background:#E4EFE6}
+.box{background:#fff;border:1px solid #DCE3D7;border-radius:16px;padding:14px 16px}
+.bar{height:10px;border-radius:999px;background:#E1E6DE;overflow:hidden}
+.bar i{display:block;height:100%;background:#2F6B3F;border-radius:999px}
+.badge{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:12px;font-weight:600;line-height:1.2;color:#1C2A22}
+.medal{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#E4EFE6;color:#1E5A2E;border:2px solid #2F6B3F}
+.medal.lock{background:#F2F5EF;color:#9AA59D;border:2px dashed #B7C1B3}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:10px;font-weight:600;font-size:15px;font-family:inherit;border:1px solid transparent;cursor:pointer;text-decoration:none}
+.btn.pri{background:#2F6B3F;color:#fff}
+.btn.done{background:#DCEFDF;color:#1E5A2E}
+.sw{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;font-weight:600;font-size:15px}
+.sw input{width:24px;height:24px;margin:0;accent-color:#2F6B3F;flex:none}
+.rk{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:15px}
+.rk b{width:22px;text-align:right;color:#4F5E55}
+.rk.me{font-weight:700;color:#1E5A2E}
+.muted{color:#4F5E55}
+.gh{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#4F5E55}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+svg.m{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F2F5EF; font-family: 'Source Sans 3', sans-serif; font-size: 16px; color: #1C2A22; overflow: hidden; position: relative">
+  <header style="background: #2F6B3F; color: #fff; padding: 26px 20px 16px; display: flex; align-items: flex-end; justify-content: space-between">
+    <div>
+      <div style="font-size: 14px; font-weight: 600; color: #DCEBDE">Herbstsaison 2026</div>
+      <h1 style="font-size: 28px; color: #fff">Mein Einsatz</h1>
+    </div>
+    <div style="text-align: right"><div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 26px; line-height: 1">{{points}}</div><div style="font-size: 13px; color: #DCEBDE">Punkte</div></div>
+  </header>
+
+  <div style="flex: 1; overflow: hidden; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px">
+    <div class="box" style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+        <strong>Vereinsziel: alle Hausdienste besetzt</strong>
+      </div>
+      <div class="bar" aria-hidden="true"><i style="width: {{goalPct}}"></i></div>
+      <div style="display: flex; justify-content: space-between; font-size: 14px"><span class="muted">{{goalText}}</span><span class="muted">bis 30.11.</span></div>
+      <div style="font-size: 14px; line-height: 1.35">Geschafft? Dann gibt es den <strong>Helfer-Grillabend</strong> für alle.</div>
+    </div>
+
+    <template data-sc="if" value="{{open}}" hint-placeholder-val="{{ true }}">
+      <div class="box" style="border: 2px solid #C98A12; background: #FFFBF2; display: flex; align-items: center; gap: 12px">
+        <div style="flex: 1; min-width: 0">
+          <div style="font-size: 13px; font-weight: 600; color: #7A4E00">Kurzfristig gesucht</div>
+          <strong style="display: block">So 11.10., Hausdienst 10–18 Uhr</strong>
+          <span class="muted" style="font-size: 14px">+15 Punkte · Abzeichen „Einspringer“</span>
+        </div>
+        <button type="button" class="btn pri" onClick="{{take}}">Übernehmen</button>
+      </div>
+    </template>
+    <template data-sc="if" value="{{taken}}" hint-placeholder-val="{{ false }}">
+      <div class="box" style="display: flex; align-items: center; gap: 12px; background: #F5FAF5; border-color: #2F6B3F">
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="color: #1E5A2E"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+        <span style="font-size: 15px"><strong>So 11.10. gehört dir.</strong> Sabine weiß Bescheid. Danke!</span>
+      </div>
+    </template>
+
+    <div class="gh" style="margin-top: 2px">Meine Abzeichen · {{badgeCount}} von 8</div>
+    <div class="box" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 6px">
+      <div class="badge"><span class="medal"><svg class="m" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg></span>Erster Hausdienst</div>
+      <div class="badge"><span class="medal" style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 20px">5</span>5 Dienste</div>
+      <div class="badge"><span class="medal"><svg class="m" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4l6 6-9 9H5v-6z"/><path d="M12 6l6 6"/></svg></span>Arbeits&shy;einsatz</div>
+      <template data-sc="if" value="{{taken}}" hint-placeholder-val="{{ false }}">
+        <div class="badge"><span class="medal" style="background: #FFF1D6; border-color: #C98A12; color: #7A4E00"><svg class="m" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>Einspringer <span style="color: #7A4E00">neu!</span></div>
+      </template>
+      <template data-sc="if" value="{{open}}" hint-placeholder-val="{{ true }}">
+        <div class="badge muted"><span class="medal lock"><svg class="m" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>Einspringer</div>
+      </template>
+      <div class="badge muted"><span class="medal lock" style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 18px">10</span>10 Dienste</div>
+      <div class="badge muted"><span class="medal lock"><svg class="m" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>Alle Jahres&shy;zeiten</div>
+      <div class="badge muted"><span class="medal lock"><svg class="m" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2.5 20c.7-3 2.8-5 5.5-5s4.8 2 5.5 5M13 15.6c.9-.4 1.9-.6 3-.6 2.7 0 4.8 2 5.5 5"/></svg></span>Allrounder</div>
+      <div class="badge muted"><span class="medal lock"><svg class="m" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg></span>Mentor</div>
+    </div>
+
+    <div class="box" style="display: flex; flex-direction: column; gap: 8px">
+      <label class="sw"><span>In der Bestenliste mitmachen</span><input type="checkbox" checked="{{inList}}" onChange="{{toggleList}}"></label>
+      <template data-sc="if" value="{{inList}}" hint-placeholder-val="{{ false }}">
+        <div>
+          <div class="rk"><b>1</b><span style="flex: 1">Markus S.</span><span>85</span></div>
+          <div class="rk"><b>2</b><span style="flex: 1">Sabine W.</span><span>70</span></div>
+          <div class="rk me"><b>{{rank}}</b><span style="flex: 1">Du</span><span>{{points}}</span></div>
+          <div class="muted" style="font-size: 13px">Nur wer mitmacht, steht hier. 9 von 23 Aktiven sind dabei.</div>
+        </div>
+      </template>
+      <template data-sc="if" value="{{notInList}}" hint-placeholder-val="{{ true }}">
+        <div class="muted" style="font-size: 14px; line-height: 1.4">Deine Punkte siehst nur du. Fürs Vereinsziel zählen sie trotzdem.</div>
+      </template>
+    </div>
+  </div>
+
+  <nav class="tabbar" aria-label="App-Navigation">
+    <a href="AppFeed.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>News</a>
+    <a href="AppTermine.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Termine</a>
+    <a class="on" href="AppEinsatz.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg>Einsatz</a>
+    <a href="AppProfil.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.2-6 8-6s7 2 8 6"/></svg>Profil</a>
+  </nav>
+
+  <template data-sc="if" value="{{celebrate}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(28,42,34,0.55); display: flex; align-items: center; justify-content: center; padding: 24px">
+      <div role="dialog" aria-label="Neues Abzeichen" style="background: #fff; border-radius: 20px; padding: 28px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%">
+        <span class="medal" style="width: 84px; height: 84px; background: #FFF1D6; border: 3px solid #C98A12; color: #7A4E00"><svg viewBox="0 0 24 24" aria-hidden="true" style="width: 42px; height: 42px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
+        <div style="font-size: 14px; font-weight: 600; color: #7A4E00">Neues Abzeichen</div>
+        <h2 style="font-size: 26px">Einspringer</h2>
+        <p style="margin: 0; line-height: 1.45">Du hast eine Lücke im Hausdienst-Plan gefüllt. Das Vereinsziel ist jetzt bei {{goalShort}}.</p>
+        <button type="button" class="btn pri" onClick="{{close}}" style="width: 100%; min-height: 50px">Weiter</button>
+      </div>
+    </div>
+  </template>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const taken = s.taken ?? false;
+    const inList = s.inList ?? false;
+    const filled = taken ? 32 : 31, total = 40;
+    const points = taken ? 60 : 45;
+    return {
+      taken, open: !taken,
+      celebrate: s.celebrate ?? false,
+      take: () => this.setState({ taken: true, celebrate: true }),
+      close: () => this.setState({ celebrate: false }),
+      points,
+      rank: 3,
+      goalPct: Math.round(filled / total * 100) + '%',
+      goalText: filled + ' von ' + total + ' Diensten besetzt',
+      goalShort: filled + ' von ' + total,
+      badgeCount: taken ? 4 : 3,
+      inList, notInList: !inList,
+      toggleList: () => this.setState({ inList: !inList })
+    };
+  }
+}
+</script>
+</body>
+</html>

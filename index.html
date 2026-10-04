@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Naturfreunde Immenreute – Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1C2A22;--muted:#4F5E55;--green:#2F6B3F;--line:#DCE3D7;--bg:#F2F5EF}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 'Source Sans 3',system-ui,sans-serif}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0}
+a{color:#245533}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+header.hero{background:var(--green);color:#fff;padding:56px 0 48px}
+header.hero h1{font-size:44px;line-height:1.08;color:#fff;max-width:760px}
+header.hero p{color:#E8F2EA;max-width:680px;margin:16px 0 0;font-size:19px}
+.note{display:inline-block;margin-top:20px;background:rgba(255,255,255,.14);padding:8px 14px;border-radius:999px;font-weight:600;font-size:15px}
+section{padding:40px 0 8px}
+section h2{font-size:28px}
+section > p{color:var(--muted);margin:6px 0 18px;max-width:760px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.card{display:flex;flex-direction:column;gap:4px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:var(--ink);min-height:96px}
+.card:hover{border-color:var(--green)}
+.card strong{font-size:18px}
+.card span{color:var(--muted);font-size:15px}
+.start{border:2px solid var(--green);background:#F5FAF5}
+footer{padding:48px 0;color:var(--muted);font-size:15px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Naturfreunde Immenreute – digitale Vereinswerkzeuge</h1>
+    <p>Klickbare Entwürfe für Dashboard, App, Tablet im Hausdienst und die öffentliche Website. Alles ist durchklickbar, nichts davon ist echt angebunden.</p>
+    <span class="note">Demo mit Beispieldaten · alle Namen und Zahlen sind erfunden</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>Internes Dashboard</h2>
+    <p>Login über die Naturfreunde-Cloud, Rollen aus Grundstufe und Tätigkeiten. Unten rechts geht es immer zurück zu dieser Übersicht.</p>
+    <div class="grid">
+      <a class="card start" href="Main.dc.html"><strong>Start: Anmeldung</strong><span>Von hier aus alles durchklicken</span></a>
+      <a class="card" href="Uebersicht.dc.html"><strong>Übersicht Vorstand</strong><span>Freigaben, Termine, Kasse</span></a>
+      <a class="card" href="UebersichtHelfer.dc.html"><strong>Übersicht Helfer</strong><span>Nächster Hausdienst, Vereinsziel</span></a>
+      <a class="card" href="Beitraege.dc.html"><strong>Beiträge</strong><span>Website, App, Push, E-Mail</span></a>
+      <a class="card" href="Editor.dc.html"><strong>Beitrag schreiben</strong><span>Kanäle wählen, Vorschau</span></a>
+      <a class="card" href="Freigabe.dc.html"><strong>Beitrag freigeben</strong><span>Vier-Augen-Prinzip</span></a>
+      <a class="card" href="Termine.dc.html"><strong>Termine &amp; News</strong><span>Anmeldungen, Hausdienst-Plan</span></a>
+      <a class="card" href="Kasse.dc.html"><strong>Verkauf &amp; Kasse</strong><span>Tagesabschlüsse, nur lesend</span></a>
+      <a class="card" href="Engagement.dc.html"><strong>Engagement</strong><span>Vereinsziel, Abzeichen, Danke</span></a>
+      <a class="card" href="Admin.dc.html"><strong>Benutzer &amp; Rollen</strong><span>Grundstufe und Tätigkeiten</span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2>News-App</h2>
+    <p>Als installierbare Web-App gedacht: News, Termine, Anmeldung und „Mein Einsatz“.</p>
+    <div class="grid">
+      <a class="card start" href="AppFeed.dc.html"><strong>Start: Neuigkeiten</strong><span>Hüttenwochenende antippen und anmelden</span></a>
+      <a class="card" href="AppTermine.dc.html"><strong>Termine</strong><span>Eigene Dienste und Zusagen</span></a>
+      <a class="card" href="AppEinsatz.dc.html"><strong>Mein Einsatz</strong><span>Schicht übernehmen, Abzeichen</span></a>
+      <a class="card" href="AppProfil.dc.html"><strong>Profil</strong><span>Benachrichtigungen, Newsletter</span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tablet im Hausdienst</h2>
+    <p>Rechenhilfe neben der offenen Ladenkasse: zählen, Bestand prüfen, eine Bestellung pro Gast, anschreiben, Abschluss.</p>
+    <div class="grid">
+      <a class="card start" href="TabletStart.dc.html"><strong>Start: Kasse zählen</strong><span>Abgleich mit dem letzten Abschluss</span></a>
+      <a class="card" href="TabletBestand.dc.html"><strong>Warenbestand</strong><span>Soll prüfen und korrigieren</span></a>
+      <a class="card" href="TabletVerkauf.dc.html"><strong>Verkauf</strong><span>Bestellung pro Gast</span></a>
+      <a class="card" href="TabletAnschreiben.dc.html"><strong>Anschreiben</strong><span>Offene Beträge begleichen</span></a>
+      <a class="card" href="TabletAbschluss.dc.html"><strong>Tagesabschluss</strong><span>Zählen und vergleichen</span></a>
+    </div>
+  </section>
+
+  <section>
+    <h2>Öffentliche Website</h2>
+    <p>Neuer Entwurf für naturfreunde-geislingen.de. Angaben in [eckigen Klammern] fehlen noch.</p>
+    <div class="grid">
+      <a class="card start" href="WebStart.dc.html"><strong>Start: Startseite</strong><span>Desktop</span></a>
+      <a class="card" href="WebStartMobil.dc.html"><strong>Startseite am Handy</strong><span>Mit Menü-Button</span></a>
+      <a class="card" href="WebVeranstaltungen.dc.html"><strong>Veranstaltungen</strong><span>Filter und Anmeldung</span></a>
+      <a class="card" href="WebNews.dc.html"><strong>News-Beitrag</strong><span>Mit Anmelde-Button</span></a>
+      <a class="card" href="WebMitglied.dc.html"><strong>Mitglied werden</strong><span>Mitglied, mithelfen oder beides</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">Entwürfe für die Naturfreunde Geislingen · Stand Oktober 2026 · Keine echten Daten, keine Anbindung.</footer>
+</body>
+</html>

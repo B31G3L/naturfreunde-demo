@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Tablet – Verkauf</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#245533}a:hover{color:#163A22}
+h1,h2,h3{font-family:'Barlow',sans-serif;margin:0;color:#1C2A22}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 18px;border-radius:12px;font-weight:600;text-decoration:none;font-size:17px;box-sizing:border-box;border:1px solid transparent;font-family:inherit;cursor:pointer}
+.btn.pri{background:#2F6B3F;color:#fff}.btn.pri:hover{background:#245533;color:#fff}
+.btn.sec{background:#fff;color:#1C2A22;border-color:#C2CCBC}.btn.sec:hover{background:#EEF2EB}
+.btn.warn{background:#fff;color:#9A2B1F;border-color:#E3B4AC}
+.btn.red{background:#9A2B1F;color:#fff}
+.btn.off{background:#E1E6DE;color:#5A665F;cursor:not-allowed}
+.bill{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;min-height:64px;padding:10px 14px;border-radius:12px;border:1px solid #DCE3D7;background:#fff;font-family:inherit;color:#1C2A22;cursor:pointer;text-align:left;box-sizing:border-box}
+.bill.on{border:2px solid #2F6B3F;background:#F5FAF5}
+.bill b{font-size:18px}.bill span{font-size:14px;color:#4F5E55}
+.cat{min-height:48px;padding:0 18px;border-radius:999px;font-family:inherit;font-size:17px;font-weight:600;cursor:pointer;border:1px solid #C2CCBC;background:#fff;color:#1C2A22}
+.cat.on{background:#1C2A22;border-color:#1C2A22;color:#fff}
+.tile{height:104px;border-radius:14px;border:1px solid #DCE3D7;background:#fff;font-family:inherit;color:#1C2A22;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;padding:12px 14px;text-align:left;gap:2px;box-sizing:border-box}
+.tile:hover{border-color:#2F6B3F}
+.tile:active{background:#E4EFE6}
+.tile b{font-size:18px;line-height:1.2}.tile span{font-size:15px;color:#4F5E55}
+.ln{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #EDF1EA;font-size:17px}
+.ln .q{width:36px;height:36px;border-radius:8px;border:1px solid #C2CCBC;background:#fff;font-size:20px;font-family:inherit;cursor:pointer;color:#1C2A22;flex:none}
+.ln .nm{flex:1;min-width:0}
+.ln .pr{width:72px;text-align:right;font-variant-numeric:tabular-nums}
+.ov{position:absolute;inset:0;background:rgba(28,42,34,.55);display:flex;align-items:center;justify-content:center;z-index:5}
+.dlg{background:#fff;border-radius:20px;padding:28px;width:520px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px}
+.amt{min-height:56px;border-radius:12px;border:1px solid #C2CCBC;background:#fff;font-family:inherit;font-size:19px;font-weight:600;cursor:pointer;color:#1C2A22}
+.amt.on{background:#1C2A22;border-color:#1C2A22;color:#fff}
+.pp{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;padding:0 14px;border-radius:10px;border:1px solid #DCE3D7;background:#fff;font-family:inherit;font-size:17px;cursor:pointer;color:#1C2A22;box-sizing:border-box}
+.pp.on{border:2px solid #2F6B3F;background:#F5FAF5}
+.muted{color:#4F5E55}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+</style>
+</helmet>
+<div style="width: 1180px; height: 820px; box-sizing: border-box; display: flex; flex-direction: column; background: #F2F5EF; font-family: 'Source Sans 3', sans-serif; font-size: 18px; color: #1C2A22; overflow: hidden; position: relative">
+  <header style="height: 72px; flex: none; background: #fff; border-bottom: 1px solid #DCE3D7; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <div style="display: flex; align-items: center; gap: 14px">
+      <div style="width: 44px; height: 44px; border-radius: 10px; background: #2F6B3F; color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Barlow', sans-serif; font-weight: 700">NF</div>
+      <div><div style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 21px">Verkauf · Sa 03.10.</div><div class="muted" style="font-size: 14px">Rechenhilfe · das Geld kommt in die Ladenkasse</div></div>
+    </div>
+    <div style="display: flex; gap: 10px">
+      <a class="btn sec" href="TabletAnschreiben.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Anschreiben</a>
+      <a class="btn sec" href="TabletAbschluss.dc.html">Tagesabschluss</a>
+    </div>
+  </header>
+
+  <template data-sc="if" value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+    <div role="status" style="position: absolute; top: 84px; left: 50%; transform: translateX(-50%); z-index: 4; background: #1C2A22; color: #fff; padding: 12px 20px; border-radius: 12px; font-weight: 600; font-size: 17px">{{toast}}</div>
+  </template>
+
+  <div style="flex: 1; display: flex; min-height: 0">
+    <aside style="width: 230px; flex: none; padding: 16px; box-sizing: border-box; border-right: 1px solid #DCE3D7; display: flex; flex-direction: column; gap: 10px">
+      <button type="button" class="btn pri" onClick="{{newBill}}" style="min-height: 64px; font-size: 18px"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Neue Bestellung</button>
+      <span class="muted" style="font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-top: 6px">Offen</span>
+      <template data-sc="for" list="{{bills}}" as="b" hint-placeholder-count="2">
+        <template data-sc="if" value="{{b.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="bill on" aria-pressed="true"><b>{{b.label}}</b><span>{{b.meta}}</span></button></template>
+        <template data-sc="if" value="{{b.off}}" hint-placeholder-val="{{ true }}"><button type="button" class="bill" onClick="{{b.pick}}" aria-pressed="false"><b>{{b.label}}</b><span>{{b.meta}}</span></button></template>
+      </template>
+      <template data-sc="if" value="{{noBills}}" hint-placeholder-val="{{ false }}"><span class="muted" style="font-size: 15px; line-height: 1.4">Keine offene Bestellung. Kommt ein Gast, oben antippen.</span></template>
+    </aside>
+
+    <section style="flex: 1; min-width: 0; padding: 16px 18px; display: flex; flex-direction: column; gap: 14px">
+      <div style="display: flex; gap: 8px" role="group" aria-label="Kategorie">
+        <template data-sc="for" list="{{cats}}" as="c" hint-placeholder-count="3">
+          <template data-sc="if" value="{{c.sel}}" hint-placeholder-val="{{ false }}"><button type="button" class="cat on" aria-pressed="true">{{c.label}}</button></template>
+          <template data-sc="if" value="{{c.unsel}}" hint-placeholder-val="{{ true }}"><button type="button" class="cat" onClick="{{c.pick}}" aria-pressed="false">{{c.label}}</button></template>
+        </template>
+      </div>
+      <template data-sc="if" value="{{hasActive}}" hint-placeholder-val="{{ true }}">
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+          <template data-sc="for" list="{{products}}" as="p" hint-placeholder-count="8">
+            <button type="button" class="tile" onClick="{{p.add}}" aria-label="{{p.aria}}"><b>{{p.name}}</b><span>{{p.price}}</span></button>
+          </template>
+        </div>
+      </template>
+      <template data-sc="if" value="{{noActive}}" hint-placeholder-val="{{ false }}">
+        <div style="flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; color: #4F5E55; border: 2px dashed #C2CCBC; border-radius: 16px; padding: 32px; font-size: 19px; line-height: 1.5">Sobald ein Gast kommt:<br><strong style="color: #1C2A22">„Neue Bestellung“</strong> antippen und auswählen, was er möchte.</div>
+      </template>
+    </section>
+
+    <aside style="width: 330px; flex: none; background: #fff; border-left: 1px solid #DCE3D7; padding: 16px 18px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
+      <template data-sc="if" value="{{hasActive}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 8px; height: 100%">
+          <h2 style="font-size: 22px">{{activeLabel}}</h2>
+          <div style="flex: 1; overflow: hidden">
+            <template data-sc="for" list="{{lines}}" as="l" hint-placeholder-count="3">
+              <div class="ln"><button type="button" class="q" onClick="{{l.minus}}" aria-label="{{l.ariaMinus}}">−</button><span style="width: 26px; text-align: center; font-weight: 700">{{l.qty}}</span><span class="nm">{{l.name}}</span><span class="pr">{{l.sum}}</span></div>
+            </template>
+            <template data-sc="if" value="{{empty}}" hint-placeholder-val="{{ false }}"><p class="muted" style="margin: 8px 0; font-size: 16px">Noch nichts ausgewählt. Artikel links antippen.</p></template>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid #1C2A22; padding-top: 10px"><span style="font-weight: 600">Summe</span><span style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 34px">{{total}}</span></div>
+          <template data-sc="if" value="{{filled}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <button type="button" class="btn pri" onClick="{{openPay}}" style="min-height: 64px; font-size: 20px">Bezahlt</button>
+              <div style="display: flex; gap: 8px">
+                <button type="button" class="btn sec" onClick="{{openTab}}" style="flex: 1">Anschreiben</button>
+                <button type="button" class="btn warn" onClick="{{openStorno}}" style="flex: 1">Stornieren</button>
+              </div>
+            </div>
+          </template>
+          <template data-sc="if" value="{{empty}}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span class="btn off" aria-disabled="true" style="min-height: 64px">Bezahlt</span>
+              <button type="button" class="btn warn" onClick="{{discard}}">Leere Bestellung verwerfen</button>
+            </div>
+          </template>
+        </div>
+      </template>
+      <template data-sc="if" value="{{noActive}}" hint-placeholder-val="{{ false }}"><p class="muted" style="margin: 0; font-size: 16px">Keine Bestellung ausgewählt.</p></template>
+    </aside>
+  </div>
+
+  <template data-sc="if" value="{{dlgPay}}" hint-placeholder-val="{{ false }}">
+    <div class="ov"><div class="dlg" role="dialog" aria-label="Bezahlen">
+      <h2 style="font-size: 26px">{{activeLabel}} bezahlen · {{total}}</h2>
+      <span class="muted">Was hat der Gast gegeben?</span>
+      <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px">
+        <template data-sc="for" list="{{given}}" as="g" hint-placeholder-count="5">
+          <template data-sc="if" value="{{g.sel}}" hint-placeholder-val="{{ false }}"><button type="button" class="amt on" aria-pressed="true">{{g.label}}</button></template>
+          <template data-sc="if" value="{{g.unsel}}" hint-placeholder-val="{{ true }}"><button type="button" class="amt" onClick="{{g.pick}}" aria-pressed="false">{{g.label}}</button></template>
+        </template>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; padding: 14px 16px; border-radius: 12px; background: #E4EFE6"><span style="font-weight: 600">Rückgeld</span><span style="font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 32px">{{change}}</span></div>
+      <div style="display: flex; gap: 10px"><button type="button" class="btn sec" onClick="{{closeDlg}}" style="flex: 1">Zurück</button><button type="button" class="btn pri" onClick="{{confirmPay}}" style="flex: 2">Bezahlt · Geld in die Kasse</button></div>
+    </div></div>
+  </template>
+
+  <template data-sc="if" value="{{dlgStorno}}" hint-placeholder-val="{{ false }}">
+    <div class="ov"><div class="dlg" role="dialog" aria-label="Stornieren">
+      <h2 style="font-size: 26px">{{activeLabel}} stornieren?</h2>
+      <span class="muted" style="line-height: 1.45">Die Bestellung über {{total}} wird nicht berechnet. Sie bleibt mit Grund im Protokoll sichtbar.</span>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <template data-sc="for" list="{{stornoReasons}}" as="r" hint-placeholder-count="3">
+          <template data-sc="if" value="{{r.sel}}" hint-placeholder-val="{{ false }}"><button type="button" class="pp on" aria-pressed="true">{{r.label}}</button></template>
+          <template data-sc="if" value="{{r.unsel}}" hint-placeholder-val="{{ true }}"><button type="button" class="pp" onClick="{{r.pick}}" aria-pressed="false">{{r.label}}</button></template>
+        </template>
+      </div>
+      <div style="display: flex; gap: 10px"><button type="button" class="btn sec" onClick="{{closeDlg}}" style="flex: 1">Abbrechen</button>
+        <template data-sc="if" value="{{stornoReady}}" hint-placeholder-val="{{ false }}"><button type="button" class="btn red" onClick="{{confirmStorno}}" style="flex: 2">Stornieren</button></template>
+        <template data-sc="if" value="{{stornoNotReady}}" hint-placeholder-val="{{ true }}"><span class="btn off" aria-disabled="true" style="flex: 2">Grund wählen</span></template>
+      </div>
+    </div></div>
+  </template>
+
+  <template data-sc="if" value="{{dlgTab}}" hint-placeholder-val="{{ false }}">
+    <div class="ov"><div class="dlg" role="dialog" aria-label="Anschreiben">
+      <h2 style="font-size: 26px">{{total}} anschreiben für …</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <template data-sc="for" list="{{people}}" as="p" hint-placeholder-count="4">
+          <template data-sc="if" value="{{p.sel}}" hint-placeholder-val="{{ false }}"><button type="button" class="pp on" aria-pressed="true"><span>{{p.name}}</span><span class="muted">{{p.open}}</span></button></template>
+          <template data-sc="if" value="{{p.unsel}}" hint-placeholder-val="{{ true }}"><button type="button" class="pp" onClick="{{p.pick}}" aria-pressed="false"><span>{{p.name}}</span><span class="muted">{{p.open}}</span></button></template>
+        </template>
+        <a class="pp" href="TabletAnschreiben.dc.html" style="text-decoration: none; color: #245533; font-weight: 600">+ Neue Person anlegen</a>
+      </div>
+      <div style="display: flex; gap: 10px"><button type="button" class="btn sec" onClick="{{closeDlg}}" style="flex: 1">Abbrechen</button>
+        <template data-sc="if" value="{{tabReady}}" hint-placeholder-val="{{ false }}"><button type="button" class="btn pri" onClick="{{confirmTab}}" style="flex: 2">Anschreiben</button></template>
+        <template data-sc="if" value="{{tabNotReady}}" hint-placeholder-val="{{ true }}"><span class="btn off" aria-disabled="true" style="flex: 2">Person wählen</span></template>
+      </div>
+    </div></div>
+  </template>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const P = [
+      { id: 'wasser', cat: 'g', name: 'Wasser 0,5 l', c: 150 },
+      { id: 'schorle', cat: 'g', name: 'Apfelschorle', c: 200 },
+      { id: 'limo', cat: 'g', name: 'Limo', c: 220 },
+      { id: 'bier', cat: 'g', name: 'Bier 0,5 l', c: 320 },
+      { id: 'radler', cat: 'g', name: 'Radler', c: 300 },
+      { id: 'wein', cat: 'g', name: 'Weinschorle', c: 300 },
+      { id: 'kaffee', cat: 'g', name: 'Kaffee', c: 200 },
+      { id: 'tee', cat: 'g', name: 'Tee', c: 180 },
+      { id: 'kuchen', cat: 's', name: 'Kuchen (Stück)', c: 250 },
+      { id: 'wurst', cat: 's', name: 'Rote Wurst', c: 350 },
+      { id: 'brezel', cat: 's', name: 'Brezel', c: 120 },
+      { id: 'vesper', cat: 's', name: 'Vesperteller', c: 650 },
+      { id: 'eis', cat: 'x', name: 'Eis', c: 150 },
+      { id: 'karte', cat: 'x', name: 'Wanderkarte', c: 400 }
+    ];
+    const byId = {}; P.forEach((p) => { byId[p.id] = p; });
+    const PEOPLE = [
+      { id: 'gerhard', name: 'Gerhard B.', open: 1240 },
+      { id: 'maier', name: 'Familie Maier', open: 2340 },
+      { id: 'kuchen', name: 'Wanderfreunde Kuchen', open: 4350 }
+    ];
+    const eur = (c) => (c / 100).toFixed(2).replace('.', ',') + ' €';
+    const s = this.state || {};
+    const bills = s.bills ?? [{ no: 14, items: { kaffee: 2, kuchen: 2 } }, { no: 15, items: { bier: 1, wurst: 1 } }];
+    const active = s.active === undefined ? 14 : s.active;
+    const nextNo = s.nextNo ?? 16;
+    const cat = s.cat ?? 'g';
+    const dlg = s.dlg ?? null;
+    const sum = (b) => Object.keys(b.items).reduce((a, k) => a + byId[k].c * b.items[k], 0);
+    const count = (b) => Object.keys(b.items).reduce((a, k) => a + b.items[k], 0);
+    const cur = bills.find((b) => b.no === active) || null;
+    const total = cur ? sum(cur) : 0;
+    const upd = (items) => this.setState({ bills: bills.map((b) => (b.no === active ? { ...b, items } : b)) });
+    const close = (msg) => {
+      const rest = bills.filter((b) => b.no !== active);
+      this.setState({ bills: rest, active: rest.length ? rest[0].no : null, dlg: null, toast: msg, given: null, reason: null, person: null });
+    };
+    const givenSel = s.given ?? 'exact';
+    const opts = [{ id: 'exact', label: 'Passend', c: total }, { id: 5, label: '5 €', c: 500 }, { id: 10, label: '10 €', c: 1000 }, { id: 20, label: '20 €', c: 2000 }, { id: 50, label: '50 €', c: 5000 }];
+    const g = opts.find((o) => o.id === givenSel) || opts[0];
+    const changeC = g.c - total;
+    const R = ['Gast hat es sich anders überlegt', 'Falsch eingegeben', 'Ware war nicht mehr da'];
+    const reason = s.reason ?? null;
+    const person = s.person ?? null;
+    const lines = cur ? Object.keys(cur.items).filter((k) => cur.items[k] > 0).map((k) => ({
+      qty: cur.items[k], name: byId[k].name, sum: eur(byId[k].c * cur.items[k]),
+      ariaMinus: byId[k].name + ' eins weniger',
+      minus: () => { const it = { ...cur.items, [k]: cur.items[k] - 1 }; if (it[k] <= 0) delete it[k]; upd(it); }
+    })) : [];
+    const labels = { g: 'Getränke', s: 'Kuchen & Essen', x: 'Sonstiges' };
+    return {
+      toast: s.toast ?? '', hasToast: !!s.toast,
+      newBill: () => this.setState({ bills: [...bills, { no: nextNo, items: {} }], active: nextNo, nextNo: nextNo + 1, toast: null }),
+      bills: bills.map((b) => ({
+        label: 'Bestellung ' + b.no, meta: count(b) + ' Artikel · ' + eur(sum(b)),
+        on: b.no === active, off: b.no !== active, pick: () => this.setState({ active: b.no, toast: null })
+      })),
+      noBills: bills.length === 0,
+      cats: ['g', 's', 'x'].map((id) => ({ label: labels[id], sel: cat === id, unsel: cat !== id, pick: () => this.setState({ cat: id }) })),
+      products: P.filter((p) => p.cat === cat).map((p) => ({
+        name: p.name, price: eur(p.c), aria: p.name + ' ' + eur(p.c) + ' zur Bestellung hinzufügen',
+        add: () => upd({ ...cur.items, [p.id]: (cur.items[p.id] || 0) + 1 })
+      })),
+      hasActive: !!cur, noActive: !cur,
+      activeLabel: cur ? 'Bestellung ' + cur.no : '',
+      lines, empty: !!cur && lines.length === 0, filled: !!cur && lines.length > 0,
+      total: eur(total),
+      discard: () => close(null),
+      openPay: () => this.setState({ dlg: 'pay', given: 'exact' }),
+      openStorno: () => this.setState({ dlg: 'storno', reason: null }),
+      openTab: () => this.setState({ dlg: 'tab', person: null }),
+      closeDlg: () => this.setState({ dlg: null }),
+      dlgPay: dlg === 'pay', dlgStorno: dlg === 'storno', dlgTab: dlg === 'tab',
+      given: opts.map((o) => ({ label: o.label, sel: o.id === givenSel, unsel: o.id !== givenSel, pick: () => this.setState({ given: o.id }) })),
+      change: changeC >= 0 ? eur(changeC) : 'zu wenig',
+      confirmPay: () => { if (changeC >= 0) close((cur ? 'Bestellung ' + cur.no : '') + ' bezahlt' + (changeC > 0 ? ' · Rückgeld ' + eur(changeC) : '')); },
+      stornoReasons: R.map((r) => ({ label: r, sel: reason === r, unsel: reason !== r, pick: () => this.setState({ reason: r }) })),
+      stornoReady: !!reason, stornoNotReady: !reason,
+      confirmStorno: () => close((cur ? 'Bestellung ' + cur.no : '') + ' storniert'),
+      people: PEOPLE.map((p) => ({ name: p.name, open: p.open ? 'offen ' + eur(p.open) : '', sel: person === p.id, unsel: person !== p.id, pick: () => this.setState({ person: p.id }) })),
+      tabReady: !!person, tabNotReady: !person,
+      confirmTab: () => { const p = PEOPLE.find((x) => x.id === person); close(eur(total) + ' angeschrieben für ' + (p ? p.name : '')); }
+    };
+  }
+}
+</script>
+</body>
+</html>
